@@ -1,0 +1,136 @@
+:root {
+  /* =========================================================
+     ZUNOKS — BRAND COLORS
+     ========================================================= */
+
+  --z-green: #319b42;
+  --z-green-dark: #1f7130;
+  --z-green-deep: #123f22;
+  --z-green-soft: #eaf6ec;
+
+  --z-orange: #ef7d22;
+  --z-orange-dark: #bd5b10;
+  --z-orange-soft: #fff0e4;
+
+  /* =========================================================
+     NEUTRALS
+     ========================================================= */
+
+  --z-black: #090909;
+  --z-ink: #151515;
+  --z-charcoal: #242424;
+  --z-grey-900: #333333;
+  --z-grey-700: #666666;
+  --z-grey-500: #999999;
+  --z-grey-300: #d7d7d7;
+  --z-grey-200: #e7e7e7;
+  --z-grey-100: #f3f3f1;
+
+  --z-off-white: #f8f8f4;
+  --z-white: #ffffff;
+
+  /* =========================================================
+     SEMANTIC COLORS
+     ========================================================= */
+
+  --background: var(--z-off-white);
+  --surface: var(--z-white);
+  --surface-dark: var(--z-black);
+
+  --text-primary: var(--z-ink);
+  --text-secondary: var(--z-grey-700);
+  --text-inverse: var(--z-white);
+
+  --accent-primary: var(--z-green);
+  --accent-secondary: var(--z-orange);
+
+  --border-light: rgba(9, 9, 9, 0.12);
+  --border-dark: rgba(255, 255, 255, 0.16);
+
+  /* =========================================================
+     TYPOGRAPHY SCALE
+     ========================================================= */
+
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-md: 1.125rem;
+  --font-size-lg: 1.375rem;
+  --font-size-xl: 1.75rem;
+  --font-size-2xl: 2.25rem;
+  --font-size-3xl: 3rem;
+  --font-size-4xl: 4rem;
+  --font-size-5xl: 5.5rem;
+  --font-size-hero: clamp(4rem, 9vw, 9rem);
+
+  /* =========================================================
+     SPACING
+     ========================================================= */
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+
+  /* =========================================================
+     LAYOUT
+     ========================================================= */
+
+  --container-max: 1440px;
+  --container-wide: 1600px;
+
+  --page-gutter: clamp(1.25rem, 4vw, 5rem);
+  --section-space: clamp(6rem, 10vw, 10rem);
+
+  /* =========================================================
+     RADIUS
+     ========================================================= */
+
+  --radius-sm: 0.5rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
+  --radius-xl: 2rem;
+  --radius-pill: 999px;
+
+  /* =========================================================
+     MOTION
+     ========================================================= */
+
+  --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-soft: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-sharp: cubic-bezier(0.76, 0, 0.24, 1);
+
+  --duration-fast: 180ms;
+  --duration-medium: 420ms;
+  --duration-slow: 800ms;
+
+  /* =========================================================
+     Z-INDEX
+     ========================================================= */
+
+  --z-base: 1;
+  --z-content: 10;
+  --z-navbar: 100;
+  --z-overlay: 500;
+  --z-cursor: 900;
+  --z-preloader: 1000;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --page-gutter: 1.25rem;
+    --section-space: 5rem;
+
+    --font-size-4xl: 3rem;
+    --font-size-5xl: 4rem;
+  }
+}
