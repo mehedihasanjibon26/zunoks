@@ -1,4 +1,11 @@
 import type { Metadata } from "next";
+
+import Footer from "@/components/layout/Footer";
+import Navbar from "@/components/navigation/Navbar";
+import CustomCursor from "@/components/ui/CustomCursor";
+import PreloaderController from "@/components/transitions/PreloaderController";
+import SmoothScroll from "@/components/transitions/SmoothScroll";
+
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -18,7 +25,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <div className="site-shell">{children}</div>
+        <PreloaderController>
+          <SmoothScroll>
+            <div className="site-shell">
+              <Navbar />
+              {children}
+              <Footer />
+            </div>
+
+            <CustomCursor />
+          </SmoothScroll>
+        </PreloaderController>
       </body>
     </html>
   );

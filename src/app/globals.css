@@ -1,5 +1,5 @@
-@import "../styles/tokens.css";
 @import "tailwindcss";
+@import "../styles/tokens.css";
 
 /* =========================================================
    GLOBAL RESET
@@ -29,11 +29,7 @@ body {
   background: var(--background);
   color: var(--text-primary);
 
-  font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
-
+  font-family: Arial, Helvetica, sans-serif;
   font-size: var(--font-size-base);
   line-height: 1.5;
 
@@ -175,7 +171,6 @@ strong {
     calc(100% - (var(--page-gutter) * 2)),
     var(--container-max)
   );
-
   margin-inline: auto;
 }
 
@@ -184,7 +179,6 @@ strong {
     calc(100% - (var(--page-gutter) * 2)),
     var(--container-wide)
   );
-
   margin-inline: auto;
 }
 
@@ -222,10 +216,8 @@ strong {
 
 .eyebrow::before {
   content: "";
-
   width: 1.75rem;
   height: 1px;
-
   background: currentColor;
 }
 
