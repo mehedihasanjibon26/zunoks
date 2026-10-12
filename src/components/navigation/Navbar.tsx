@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { usePathname } from "next/navigation";
 import {
   ArrowUpRight,
   ChevronDown,
@@ -48,20 +47,20 @@ const megaMenus: Record<MenuKey, MegaMenuGroup> = {
         description: "Who we are and how we create value.",
       },
       {
-        label: "Partners",
-        href: "/leadership",
-        description:
-          "Meet the senior professionals behind ZUNOKS.",
-      },
-      {
         label: "Our Story",
-        href: "/about#our-story",
+        href: "/about/our-story",
         description: "Yesterday, today and tomorrow.",
       },
       {
         label: "Vision, Mission & Values",
-        href: "/about#vision-mission-values",
+        href: "/about/vision-mission-values",
         description: "The principles that guide the firm.",
+      },
+      {
+        label: "Founders",
+        href: "/about/founders",
+        description:
+          "Meet the senior professionals behind ZUNOKS.",
       },
     ],
   },
@@ -79,8 +78,7 @@ const megaMenus: Record<MenuKey, MegaMenuGroup> = {
 
   clients: {
     eyebrow: "Clients & Impact",
-    title:
-      "Experience across industries and transformations.",
+    title: "Experience across industries and transformations.",
     description:
       "Explore the sectors ZUNOKS serves and how consulting engagements create impact.",
     items: [
@@ -98,7 +96,7 @@ const megaMenus: Record<MenuKey, MegaMenuGroup> = {
       },
       {
         label: "Client Impact",
-        href: "/case-studies#impact",
+        href: "/client-impact",
         description:
           "Challenges, interventions and outcomes.",
       },
@@ -107,8 +105,7 @@ const megaMenus: Record<MenuKey, MegaMenuGroup> = {
 
   insights: {
     eyebrow: "Knowledge & Perspective",
-    title:
-      "Ideas shaped by real leadership experience.",
+    title: "Ideas shaped by real leadership experience.",
     description:
       "Thought leadership, perspectives and updates across business, people and transformation.",
     items: [
@@ -141,25 +138,25 @@ const megaMenus: Record<MenuKey, MegaMenuGroup> = {
     items: [
       {
         label: "Work With Us",
-        href: "/careers",
+        href: "/careers/work-with-us",
         description:
           "Discover the ZUNOKS consulting environment.",
       },
       {
         label: "Career Opportunities",
-        href: "/careers#opportunities",
+        href: "/careers/career-opportunities",
         description:
           "Explore current and future opportunities.",
       },
       {
         label: "Young Professionals",
-        href: "/careers#young-professionals",
+        href: "/careers/young-professionals",
         description:
           "Start and develop a career in consulting.",
       },
       {
         label: "Experienced Professionals",
-        href: "/careers#experienced-professionals",
+        href: "/careers/experienced-professionals",
         description:
           "Bring experience and expertise to wider challenges.",
       },
@@ -176,9 +173,38 @@ const searchSuggestions = [
   "Gamified Recruitment",
 ];
 
-export default function Navbar() {
-  const pathname = usePathname();
+const mobileNavigation = [
+  ["Home", "/"],
+  ["About Us", "/about"],
+  ["Our Story", "/about/our-story"],
+  [
+    "Vision, Mission & Values",
+    "/about/vision-mission-values",
+  ],
+  ["Founders", "/about/founders"],
+  ["Our Services", "/services"],
+  ["Our Clients", "/clients"],
+  ["Insights", "/insights"],
 
+  ["Work With Us", "/careers/work-with-us"],
+  [
+    "Career Opportunities",
+    "/careers/career-opportunities",
+  ],
+  [
+    "Young Professionals",
+    "/careers/young-professionals",
+  ],
+  [
+    "Experienced Professionals",
+    "/careers/experienced-professionals",
+  ],
+
+  ["Social Impact", "/social-impact"],
+  ["Contact", "/contact"],
+] as const;
+
+export default function Navbar() {
   const headerRef = useRef<HTMLElement>(null);
   const shellRef = useRef<HTMLDivElement>(null);
   const desktopNavRef = useRef<HTMLDivElement>(null);
@@ -189,10 +215,15 @@ export default function Navbar() {
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+
   const [activeMega, setActiveMega] =
     useState<MenuKey | null>(null);
+
   const [scrolled, setScrolled] = useState(false);
 
+  /*
+   * Scroll state.
+   */
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 40);
@@ -209,6 +240,9 @@ export default function Navbar() {
     };
   }, []);
 
+  /*
+   * Initial navbar reveal.
+   */
   useEffect(() => {
     if (!shellRef.current) return;
 
@@ -234,13 +268,19 @@ export default function Navbar() {
     return () => ctx.revert();
   }, []);
 
+  /*
+   * Desktop navbar:
+   * manually opens with Menu
+   * and manually closes with X.
+   */
   useEffect(() => {
     const nav = desktopNavRef.current;
 
     if (!nav) return;
 
-    const items =
-      nav.querySelectorAll("[data-nav-item]");
+    const items = nav.querySelectorAll(
+      "[data-nav-item]",
+    );
 
     gsap.killTweensOf(nav);
     gsap.killTweensOf(items);
@@ -326,13 +366,19 @@ export default function Navbar() {
     }
   }, [menuOpen]);
 
+  /*
+   * Mega-menu animation.
+   */
   useEffect(() => {
     const mega = megaRef.current;
 
-    if (!mega || !activeMega) return;
+    if (!mega || !activeMega) {
+      return;
+    }
 
-    const items =
-      mega.querySelectorAll("[data-mega-item]");
+    const items = mega.querySelectorAll(
+      "[data-mega-item]",
+    );
 
     const ctx = gsap.context(() => {
       gsap.set(items, {
@@ -382,13 +428,20 @@ export default function Navbar() {
     return () => ctx.revert();
   }, [activeMega]);
 
+  /*
+   * Search animation.
+   */
   useEffect(() => {
     const panel = searchPanelRef.current;
 
-    if (!panel || !searchOpen) return;
+    if (!panel || !searchOpen) {
+      return;
+    }
 
     const animatedItems =
-      panel.querySelectorAll("[data-search-item]");
+      panel.querySelectorAll(
+        "[data-search-item]",
+      );
 
     const ctx = gsap.context(() => {
       gsap.set(animatedItems, {
@@ -442,14 +495,22 @@ export default function Navbar() {
     return () => ctx.revert();
   }, [searchOpen]);
 
+  /*
+   * Mobile fullscreen menu.
+   */
   useEffect(() => {
-    if (!menuOpen || !mobilePanelRef.current)
+    if (
+      !menuOpen ||
+      !mobilePanelRef.current
+    ) {
       return;
+    }
 
     const panel = mobilePanelRef.current;
 
-    const items =
-      panel.querySelectorAll("[data-mobile-item]");
+    const items = panel.querySelectorAll(
+      "[data-mobile-item]",
+    );
 
     const ctx = gsap.context(() => {
       gsap.set(items, {
@@ -483,7 +544,7 @@ export default function Navbar() {
           opacity: 1,
           filter: "blur(0px)",
           duration: 0.8,
-          stagger: 0.085,
+          stagger: 0.065,
           ease: "power4.out",
         },
         "-=0.52",
@@ -493,13 +554,16 @@ export default function Navbar() {
     return () => ctx.revert();
   }, [menuOpen]);
 
+  /*
+   * ESC closes temporary overlays only.
+   * Navbar stays manually controlled.
+   */
   useEffect(() => {
     const handleKeyDown = (
       event: KeyboardEvent,
     ) => {
       if (event.key === "Escape") {
         setSearchOpen(false);
-        setMenuOpen(false);
         setActiveMega(null);
       }
     };
@@ -517,12 +581,6 @@ export default function Navbar() {
     };
   }, []);
 
-  useEffect(() => {
-    setMenuOpen(false);
-    setSearchOpen(false);
-    setActiveMega(null);
-  }, [pathname]);
-
   const toggleMenu = () => {
     setSearchOpen(false);
 
@@ -536,32 +594,35 @@ export default function Navbar() {
   };
 
   const toggleSearch = () => {
-    setMenuOpen(false);
     setActiveMega(null);
-    setSearchOpen((current) => !current);
+
+    setSearchOpen(
+      (current) => !current,
+    );
   };
 
-  const toggleMega = (key: MenuKey) => {
+  const toggleMega = (
+    key: MenuKey,
+  ) => {
     setActiveMega((current) =>
       current === key ? null : key,
     );
   };
 
-  const closeNavigation = () => {
-    setMenuOpen(false);
-    setActiveMega(null);
-  };
+  /*
+   * Selecting a page only closes
+   * the temporary dropdown.
+   * Main navbar remains open.
+   */
+  const handleNavigationSelection =
+    () => {
+      setActiveMega(null);
+    };
 
   const currentMega = activeMega
     ? megaMenus[activeMega]
     : null;
 
-  /*
-   * LIQUID GLASS NAV ITEM
-   *
-   * Hovering the NAV ITEM itself creates the
-   * glass/water effect. Cursor remains normal.
-   */
   const navItemClass = `
     group
     relative
@@ -645,6 +706,7 @@ export default function Navbar() {
             : "px-4 pt-4 lg:px-[var(--page-gutter)] lg:pt-5"
         }`}
       >
+        {/* MAIN NAV SHELL */}
         <div
           ref={shellRef}
           className={`relative mx-auto flex w-full max-w-[var(--container-wide)] items-center overflow-hidden border transition-all duration-500 before:pointer-events-none before:absolute before:inset-x-[8%] before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-white/90 before:to-transparent after:pointer-events-none after:absolute after:-right-8 after:-top-12 after:h-28 after:w-28 after:rounded-full after:bg-[var(--z-green)] after:opacity-[0.10] after:blur-[42px] ${
@@ -661,8 +723,12 @@ export default function Navbar() {
 
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white/[0.18] via-transparent to-white/[0.04]" />
 
+          {/* LOGO */}
           <Link
             href="/"
+            onClick={
+              handleNavigationSelection
+            }
             className="relative z-20 flex shrink-0 items-center"
             aria-label="ZUNOKS Home"
           >
@@ -681,6 +747,7 @@ export default function Navbar() {
             />
           </Link>
 
+          {/* DESKTOP NAV */}
           <div className="relative z-20 hidden min-w-0 flex-1 items-center justify-center px-5 xl:flex">
             <div
               ref={desktopNavRef}
@@ -690,136 +757,102 @@ export default function Navbar() {
                 <Link
                   data-nav-item
                   href="/"
-                  onClick={closeNavigation}
-                  className={navItemClass}
+                  onClick={
+                    handleNavigationSelection
+                  }
+                  className={
+                    navItemClass
+                  }
                 >
-                  <span className={navLabelClass}>
+                  <span
+                    className={
+                      navLabelClass
+                    }
+                  >
                     Home
                   </span>
                 </Link>
 
-                <button
-                  data-nav-item
-                  type="button"
-                  onClick={() =>
-                    toggleMega("about")
+                <NavMegaButton
+                  label="About Us"
+                  menuKey="about"
+                  activeMega={activeMega}
+                  toggleMega={toggleMega}
+                  navItemClass={
+                    navItemClass
                   }
-                  className={navItemClass}
-                >
-                  <span className={navLabelClass}>
-                    About Us
-                  </span>
-
-                  <ChevronDown
-                    size={13}
-                    strokeWidth={1.8}
-                    className={`relative z-10 shrink-0 transition-transform duration-500 ${
-                      activeMega === "about"
-                        ? "rotate-180"
-                        : ""
-                    }`}
-                  />
-                </button>
-
-                <button
-                  data-nav-item
-                  type="button"
-                  onClick={() =>
-                    toggleMega("services")
+                  navLabelClass={
+                    navLabelClass
                   }
-                  className={navItemClass}
-                >
-                  <span className={navLabelClass}>
-                    Our Services
-                  </span>
+                />
 
-                  <ChevronDown
-                    size={13}
-                    strokeWidth={1.8}
-                    className={`relative z-10 shrink-0 transition-transform duration-500 ${
-                      activeMega === "services"
-                        ? "rotate-180"
-                        : ""
-                    }`}
-                  />
-                </button>
-
-                <button
-                  data-nav-item
-                  type="button"
-                  onClick={() =>
-                    toggleMega("clients")
+                <NavMegaButton
+                  label="Our Services"
+                  menuKey="services"
+                  activeMega={activeMega}
+                  toggleMega={toggleMega}
+                  navItemClass={
+                    navItemClass
                   }
-                  className={navItemClass}
-                >
-                  <span className={navLabelClass}>
-                    Our Clients
-                  </span>
-
-                  <ChevronDown
-                    size={13}
-                    strokeWidth={1.8}
-                    className={`relative z-10 shrink-0 transition-transform duration-500 ${
-                      activeMega === "clients"
-                        ? "rotate-180"
-                        : ""
-                    }`}
-                  />
-                </button>
-
-                <button
-                  data-nav-item
-                  type="button"
-                  onClick={() =>
-                    toggleMega("insights")
+                  navLabelClass={
+                    navLabelClass
                   }
-                  className={navItemClass}
-                >
-                  <span className={navLabelClass}>
-                    Insights
-                  </span>
+                />
 
-                  <ChevronDown
-                    size={13}
-                    strokeWidth={1.8}
-                    className={`relative z-10 shrink-0 transition-transform duration-500 ${
-                      activeMega === "insights"
-                        ? "rotate-180"
-                        : ""
-                    }`}
-                  />
-                </button>
-
-                <button
-                  data-nav-item
-                  type="button"
-                  onClick={() =>
-                    toggleMega("work")
+                <NavMegaButton
+                  label="Our Clients"
+                  menuKey="clients"
+                  activeMega={activeMega}
+                  toggleMega={toggleMega}
+                  navItemClass={
+                    navItemClass
                   }
-                  className={navItemClass}
-                >
-                  <span className={navLabelClass}>
-                    Work With Us
-                  </span>
+                  navLabelClass={
+                    navLabelClass
+                  }
+                />
 
-                  <ChevronDown
-                    size={13}
-                    strokeWidth={1.8}
-                    className={`relative z-10 shrink-0 transition-transform duration-500 ${
-                      activeMega === "work"
-                        ? "rotate-180"
-                        : ""
-                    }`}
-                  />
-                </button>
+                <NavMegaButton
+                  label="Insights"
+                  menuKey="insights"
+                  activeMega={activeMega}
+                  toggleMega={toggleMega}
+                  navItemClass={
+                    navItemClass
+                  }
+                  navLabelClass={
+                    navLabelClass
+                  }
+                />
+
+                <NavMegaButton
+                  label="Work With Us"
+                  menuKey="work"
+                  activeMega={activeMega}
+                  toggleMega={toggleMega}
+                  navItemClass={
+                    navItemClass
+                  }
+                  navLabelClass={
+                    navLabelClass
+                  }
+                />
 
                 <Link
                   data-nav-item
                   href="/social-impact"
-                  onClick={closeNavigation}
-                  className={navItemClass}
+                  onClick={
+                    handleNavigationSelection
+                  }
+                  className={
+                    navItemClass
+                  }
                 >
-                  <span className={navLabelClass}>
+                  <span
+                    className={
+                      navLabelClass
+                    }
+                  >
                     Social Impact
                   </span>
                 </Link>
@@ -827,10 +860,18 @@ export default function Navbar() {
                 <Link
                   data-nav-item
                   href="/contact"
-                  onClick={closeNavigation}
-                  className={navItemClass}
+                  onClick={
+                    handleNavigationSelection
+                  }
+                  className={
+                    navItemClass
+                  }
                 >
-                  <span className={navLabelClass}>
+                  <span
+                    className={
+                      navLabelClass
+                    }
+                  >
                     Contact
                   </span>
                 </Link>
@@ -838,6 +879,7 @@ export default function Navbar() {
             </div>
           </div>
 
+          {/* DESKTOP CONTROLS */}
           <div className="relative z-20 ml-auto hidden shrink-0 items-center gap-3 xl:flex">
             <button
               type="button"
@@ -852,7 +894,9 @@ export default function Navbar() {
                   ? "Close navigation"
                   : "Open navigation"
               }
-              aria-expanded={menuOpen}
+              aria-expanded={
+                menuOpen
+              }
             >
               <span className="relative flex h-[18px] w-[18px] items-center justify-center">
                 <span
@@ -892,7 +936,10 @@ export default function Navbar() {
               }`}
             >
               {searchOpen ? (
-                <X size={18} strokeWidth={1.8} />
+                <X
+                  size={18}
+                  strokeWidth={1.8}
+                />
               ) : (
                 <Search
                   size={18}
@@ -903,6 +950,7 @@ export default function Navbar() {
             </button>
           </div>
 
+          {/* MOBILE CONTROLS */}
           <div className="relative z-20 ml-auto flex items-center gap-2 xl:hidden">
             <button
               type="button"
@@ -948,87 +996,111 @@ export default function Navbar() {
           </div>
         </div>
 
-        {currentMega && menuOpen && (
-          <div
-            ref={megaRef}
-            className="mx-auto mt-3 hidden w-full max-w-[var(--container-wide)] overflow-hidden rounded-[1.8rem] border border-white/50 bg-white/[0.40] shadow-[0_30px_100px_rgba(0,0,0,0.16),inset_0_1px_0_rgba(255,255,255,0.72)] backdrop-blur-[38px] backdrop-saturate-[1.35] xl:block"
-          >
-            <div className="relative overflow-hidden">
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/[0.18] via-transparent to-white/[0.04]" />
+        {/* MEGA MENU */}
+        {currentMega &&
+          menuOpen && (
+            <div
+              ref={megaRef}
+              className="mx-auto mt-3 hidden w-full max-w-[var(--container-wide)] overflow-hidden rounded-[1.8rem] border border-white/50 bg-white/[0.40] shadow-[0_30px_100px_rgba(0,0,0,0.16),inset_0_1px_0_rgba(255,255,255,0.72)] backdrop-blur-[38px] backdrop-saturate-[1.35] xl:block"
+            >
+              <div className="relative overflow-hidden">
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/[0.18] via-transparent to-white/[0.04]" />
 
-              <div className="pointer-events-none absolute -right-20 -top-28 h-[24rem] w-[24rem] rounded-full bg-[var(--z-green)] opacity-[0.09] blur-[100px]" />
+                <div className="pointer-events-none absolute -right-20 -top-28 h-[24rem] w-[24rem] rounded-full bg-[var(--z-green)] opacity-[0.09] blur-[100px]" />
 
-              <div className="pointer-events-none absolute -bottom-32 left-[25%] h-[20rem] w-[20rem] rounded-full bg-[var(--z-orange)] opacity-[0.08] blur-[100px]" />
+                <div className="pointer-events-none absolute -bottom-32 left-[25%] h-[20rem] w-[20rem] rounded-full bg-[var(--z-orange)] opacity-[0.08] blur-[100px]" />
 
-              <div className="relative grid gap-14 px-10 py-10 lg:grid-cols-[0.78fr_1.22fr]">
-                <div className="flex flex-col justify-between">
-                  <div>
-                    <p className="text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-[var(--z-green)]">
-                      {currentMega.eyebrow}
-                    </p>
+                <div className="relative grid gap-14 px-10 py-10 lg:grid-cols-[0.78fr_1.22fr]">
+                  <div className="flex flex-col justify-between">
+                    <div>
+                      <p className="text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-[var(--z-green)]">
+                        {
+                          currentMega.eyebrow
+                        }
+                      </p>
 
-                    <h2 className="mt-3 max-w-[11ch] text-[clamp(2.3rem,3.4vw,4.2rem)] leading-[0.92] tracking-[-0.06em]">
-                      {currentMega.title}
-                    </h2>
+                      <h2 className="mt-3 max-w-[11ch] text-[clamp(2.3rem,3.4vw,4.2rem)] leading-[0.92] tracking-[-0.06em]">
+                        {
+                          currentMega.title
+                        }
+                      </h2>
 
-                    <p className="mt-5 max-w-[31rem] text-sm leading-6 text-black/50">
-                      {currentMega.description}
-                    </p>
+                      <p className="mt-5 max-w-[31rem] text-sm leading-6 text-black/50">
+                        {
+                          currentMega.description
+                        }
+                      </p>
+                    </div>
+
+                    <div className="mt-10 flex items-center gap-3">
+                      <span className="h-2 w-2 rounded-full bg-[var(--z-orange)]" />
+
+                      <span className="text-[0.67rem] uppercase tracking-[0.17em] text-black/35">
+                        Inspire to Innovate
+                      </span>
+                    </div>
                   </div>
 
-                  <div className="mt-10 flex items-center gap-3">
-                    <span className="h-2 w-2 rounded-full bg-[var(--z-orange)]" />
+                  <div className="grid grid-cols-2 gap-x-8">
+                    {currentMega.items.map(
+                      (
+                        item,
+                        index,
+                      ) => (
+                        <Link
+                          data-mega-item
+                          key={`${item.href}-${index}`}
+                          href={
+                            item.href
+                          }
+                          onClick={
+                            handleNavigationSelection
+                          }
+                          className="group flex min-h-[92px] items-start justify-between gap-5 border-t border-black/10 py-5"
+                        >
+                          <div className="flex gap-4">
+                            <span className="mt-1 text-[0.65rem] font-medium text-black/25">
+                              {String(
+                                index +
+                                  1,
+                              ).padStart(
+                                2,
+                                "0",
+                              )}
+                            </span>
 
-                    <span className="text-[0.67rem] uppercase tracking-[0.17em] text-black/35">
-                      Inspire to Innovate
-                    </span>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-2 gap-x-8">
-                  {currentMega.items.map(
-                    (item, index) => (
-                      <Link
-                        data-mega-item
-                        key={`${item.href}-${index}`}
-                        href={item.href}
-                        onClick={closeNavigation}
-                        className="group flex min-h-[92px] items-start justify-between gap-5 border-t border-black/10 py-5"
-                      >
-                        <div className="flex gap-4">
-                          <span className="mt-1 text-[0.65rem] font-medium text-black/25">
-                            {String(
-                              index + 1,
-                            ).padStart(2, "0")}
-                          </span>
-
-                          <div>
-                            <p className="text-[0.95rem] font-medium leading-tight">
-                              {item.label}
-                            </p>
-
-                            {item.description && (
-                              <p className="mt-2 max-w-[24rem] text-xs leading-5 text-black/45">
-                                {item.description}
+                            <div>
+                              <p className="text-[0.95rem] font-medium leading-tight">
+                                {
+                                  item.label
+                                }
                               </p>
-                            )}
-                          </div>
-                        </div>
 
-                        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/60 bg-white/[0.28] backdrop-blur-xl transition-all duration-300 group-hover:border-[var(--z-green)] group-hover:bg-[var(--z-green)] group-hover:text-white">
-                          <ArrowUpRight
-                            size={14}
-                          />
-                        </div>
-                      </Link>
-                    ),
-                  )}
+                              {item.description && (
+                                <p className="mt-2 max-w-[24rem] text-xs leading-5 text-black/45">
+                                  {
+                                    item.description
+                                  }
+                                </p>
+                              )}
+                            </div>
+                          </div>
+
+                          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/60 bg-white/[0.28] backdrop-blur-xl transition-all duration-300 group-hover:border-[var(--z-green)] group-hover:bg-[var(--z-green)] group-hover:text-white">
+                            <ArrowUpRight
+                              size={14}
+                            />
+                          </div>
+                        </Link>
+                      ),
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        )}
+          )}
 
+        {/* SEARCH PANEL */}
         {searchOpen && (
           <div
             ref={searchPanelRef}
@@ -1052,7 +1124,8 @@ export default function Navbar() {
                     </p>
 
                     <h2 className="mt-2 text-[clamp(1.8rem,3vw,3.3rem)] leading-none tracking-[-0.055em]">
-                      What are you looking for?
+                      What are you looking
+                      for?
                     </h2>
                   </div>
 
@@ -1072,7 +1145,9 @@ export default function Navbar() {
                   />
 
                   <input
-                    ref={searchInputRef}
+                    ref={
+                      searchInputRef
+                    }
                     type="search"
                     placeholder="Search services, insights, people..."
                     className="w-full bg-transparent text-[clamp(1.4rem,2.4vw,2.5rem)] font-medium tracking-[-0.035em] text-black outline-none placeholder:text-black/22"
@@ -1089,9 +1164,13 @@ export default function Navbar() {
 
                   <div className="mt-4 flex flex-wrap gap-2.5">
                     {searchSuggestions.map(
-                      (suggestion) => (
+                      (
+                        suggestion,
+                      ) => (
                         <button
-                          key={suggestion}
+                          key={
+                            suggestion
+                          }
                           type="button"
                           onClick={() => {
                             if (
@@ -1105,7 +1184,9 @@ export default function Navbar() {
                           }}
                           className="rounded-full border border-white/55 bg-white/[0.28] px-4 py-2.5 text-sm text-black/65 shadow-[inset_0_1px_0_rgba(255,255,255,0.62)] backdrop-blur-xl transition-all duration-300 hover:border-[var(--z-green)] hover:bg-[var(--z-green)] hover:text-white"
                         >
-                          {suggestion}
+                          {
+                            suggestion
+                          }
                         </button>
                       ),
                     )}
@@ -1117,6 +1198,7 @@ export default function Navbar() {
         )}
       </header>
 
+      {/* MOBILE FULLSCREEN MENU */}
       {menuOpen && (
         <div
           ref={mobilePanelRef}
@@ -1124,34 +1206,38 @@ export default function Navbar() {
         >
           <div className="flex h-full flex-col overflow-y-auto px-6 pb-8">
             <nav className="flex flex-col">
-              {[
-                ["Home", "/"],
-                ["About Us", "/about"],
-                ["Our Services", "/services"],
-                ["Our Clients", "/clients"],
-                ["Insights", "/insights"],
-                ["Work With Us", "/careers"],
-                [
-                  "Social Impact",
-                  "/social-impact",
-                ],
-                ["Contact", "/contact"],
-              ].map(([label, href]) => (
-                <Link
-                  key={href}
-                  data-mobile-item
-                  href={href}
-                  onClick={closeNavigation}
-                  className="border-b border-white/15 py-5 text-[clamp(2rem,8vw,3.4rem)] font-medium leading-none tracking-[-0.055em]"
-                >
-                  {label}
-                </Link>
-              ))}
+              {mobileNavigation.map(
+                ([label, href]) => {
+                  const isCareer =
+                    href.startsWith(
+                      "/careers/",
+                    );
+
+                  return (
+                    <Link
+                      key={href}
+                      data-mobile-item
+                      href={href}
+                      onClick={
+                        handleNavigationSelection
+                      }
+                      className={`border-b border-white/15 py-5 font-medium leading-none tracking-[-0.055em] ${
+                        isCareer
+                          ? "pl-5 text-[clamp(1.45rem,6vw,2.5rem)] text-white/78"
+                          : "text-[clamp(2rem,8vw,3.4rem)]"
+                      }`}
+                    >
+                      {label}
+                    </Link>
+                  );
+                },
+              )}
             </nav>
 
             <div className="mt-auto pt-8">
               <p className="max-w-[17rem] text-xs leading-6 text-white/40">
-                Strategy. People. Leadership. Operations.
+                Strategy. People.
+                Leadership. Operations.
                 Transformation.
               </p>
             </div>
@@ -1159,5 +1245,50 @@ export default function Navbar() {
         </div>
       )}
     </>
+  );
+}
+
+function NavMegaButton({
+  label,
+  menuKey,
+  activeMega,
+  toggleMega,
+  navItemClass,
+  navLabelClass,
+}: {
+  label: string;
+  menuKey: MenuKey;
+  activeMega: MenuKey | null;
+  toggleMega: (
+    key: MenuKey,
+  ) => void;
+  navItemClass: string;
+  navLabelClass: string;
+}) {
+  return (
+    <button
+      data-nav-item
+      type="button"
+      onClick={() =>
+        toggleMega(menuKey)
+      }
+      className={navItemClass}
+    >
+      <span
+        className={navLabelClass}
+      >
+        {label}
+      </span>
+
+      <ChevronDown
+        size={13}
+        strokeWidth={1.8}
+        className={`relative z-10 shrink-0 transition-transform duration-500 ${
+          activeMega === menuKey
+            ? "rotate-180"
+            : ""
+        }`}
+      />
+    </button>
   );
 }
