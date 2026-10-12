@@ -18,9 +18,11 @@ type CursorMode =
 export default function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
   const dotRef = useRef<HTMLDivElement>(null);
+  const modeRef = useRef<CursorMode>("default");
 
   const [enabled, setEnabled] = useState(false);
-  const [mode, setMode] = useState<CursorMode>("default");
+  const [mode, setMode] =
+    useState<CursorMode>("default");
 
   useEffect(() => {
     const mediaQuery = window.matchMedia(
@@ -33,10 +35,16 @@ export default function CustomCursor() {
 
     updateState();
 
-    mediaQuery.addEventListener("change", updateState);
+    mediaQuery.addEventListener(
+      "change",
+      updateState,
+    );
 
     return () => {
-      mediaQuery.removeEventListener("change", updateState);
+      mediaQuery.removeEventListener(
+        "change",
+        updateState,
+      );
     };
   }, []);
 
@@ -48,10 +56,33 @@ export default function CustomCursor() {
 
     if (!cursor || !dot) return;
 
+    const updateMode = (
+      nextMode: CursorMode,
+    ) => {
+      modeRef.current = nextMode;
+      setMode(nextMode);
+    };
+
+    const setBackdropBlur = (
+      value: string,
+    ) => {
+      cursor.style.setProperty(
+        "backdrop-filter",
+        value,
+      );
+
+      cursor.style.setProperty(
+        "-webkit-backdrop-filter",
+        value,
+      );
+    };
+
     gsap.set(cursor, {
       xPercent: -50,
       yPercent: -50,
       opacity: 0,
+      width: 32,
+      height: 32,
     });
 
     gsap.set(dot, {
@@ -60,40 +91,66 @@ export default function CustomCursor() {
       opacity: 0,
     });
 
-    const moveCursorX = gsap.quickTo(cursor, "x", {
-      duration: 0.48,
-      ease: "power3.out",
-    });
+    setBackdropBlur("blur(0px)");
 
-    const moveCursorY = gsap.quickTo(cursor, "y", {
-      duration: 0.48,
-      ease: "power3.out",
-    });
+    const moveCursorX = gsap.quickTo(
+      cursor,
+      "x",
+      {
+        duration: 0.48,
+        ease: "power3.out",
+      },
+    );
 
-    const moveDotX = gsap.quickTo(dot, "x", {
-      duration: 0.07,
-      ease: "power2.out",
-    });
+    const moveCursorY = gsap.quickTo(
+      cursor,
+      "y",
+      {
+        duration: 0.48,
+        ease: "power3.out",
+      },
+    );
 
-    const moveDotY = gsap.quickTo(dot, "y", {
-      duration: 0.07,
-      ease: "power2.out",
-    });
+    const moveDotX = gsap.quickTo(
+      dot,
+      "x",
+      {
+        duration: 0.07,
+        ease: "power2.out",
+      },
+    );
+
+    const moveDotY = gsap.quickTo(
+      dot,
+      "y",
+      {
+        duration: 0.07,
+        ease: "power2.out",
+      },
+    );
 
     const setDefaultState = () => {
-      setMode("default");
+      if (modeRef.current === "default") {
+        return;
+      }
+
+      updateMode("default");
+
+      setBackdropBlur("blur(0px)");
 
       gsap.to(cursor, {
         width: 32,
         height: 32,
-        backgroundColor: "rgba(255,255,255,0)",
-        borderColor: "rgba(0,0,0,0.22)",
-        boxShadow: "0 0 0 rgba(0,0,0,0)",
-        backdropFilter: "blur(0px)",
-        WebkitBackdropFilter: "blur(0px)",
+        backgroundColor:
+          "rgba(255,255,255,0)",
+        borderColor:
+          "rgba(0,0,0,0.22)",
+        boxShadow:
+          "0 0 0 rgba(0,0,0,0)",
         scale: 1,
         duration: 0.5,
         ease: "power4.out",
+        overwrite: "auto",
       });
 
       gsap.to(dot, {
@@ -101,6 +158,7 @@ export default function CustomCursor() {
         scale: 1,
         duration: 0.3,
         ease: "power3.out",
+        overwrite: "auto",
       });
     };
 
@@ -108,52 +166,79 @@ export default function CustomCursor() {
       nextMode: CursorMode,
       size = 58,
     ) => {
-      setMode(nextMode);
+      if (modeRef.current === nextMode) {
+        return;
+      }
+
+      updateMode(nextMode);
+
+      setBackdropBlur("blur(16px)");
 
       gsap.to(cursor, {
         width: size,
         height: size,
-        backgroundColor: "rgba(255,255,255,0.34)",
-        borderColor: "rgba(49,155,66,0.34)",
+        backgroundColor:
+          "rgba(255,255,255,0.34)",
+        borderColor:
+          "rgba(49,155,66,0.34)",
         boxShadow:
           "0 10px 35px rgba(0,0,0,0.10), inset 0 1px 0 rgba(255,255,255,0.72)",
-        backdropFilter: "blur(16px)",
-        WebkitBackdropFilter: "blur(16px)",
         scale: 1,
         duration: 0.55,
         ease: "power4.out",
+        overwrite: "auto",
       });
 
       gsap.to(dot, {
         opacity: 0,
         scale: 0,
         duration: 0.22,
+        overwrite: "auto",
       });
     };
 
-    const resolveState = (element: HTMLElement) => {
+    const resolveState = (
+      element: HTMLElement,
+    ) => {
       const ariaLabel =
-        element.getAttribute("aria-label")?.toLowerCase() ?? "";
+        element
+          .getAttribute("aria-label")
+          ?.toLowerCase() ?? "";
+
+      const cursorMode =
+        element
+          .getAttribute("data-cursor")
+          ?.toLowerCase() ?? "";
 
       if (
         ariaLabel.includes("navigation") ||
-        ariaLabel.includes("menu")
+        ariaLabel.includes("menu") ||
+        cursorMode === "menu"
       ) {
         setGlassState("menu", 60);
         return;
       }
 
-      if (ariaLabel.includes("search")) {
+      if (
+        ariaLabel.includes("search") ||
+        cursorMode === "search"
+      ) {
         setGlassState("search", 60);
         return;
       }
 
-      if (element.tagName === "A") {
+      if (
+        element.tagName === "A" ||
+        cursorMode === "link"
+      ) {
         setGlassState("link", 56);
         return;
       }
 
-      if (element.tagName === "BUTTON") {
+      if (
+        element.tagName === "BUTTON" ||
+        cursorMode === "button"
+      ) {
         setGlassState("button", 56);
         return;
       }
@@ -161,7 +246,9 @@ export default function CustomCursor() {
       setDefaultState();
     };
 
-    const handleMouseMove = (event: MouseEvent) => {
+    const handleMouseMove = (
+      event: MouseEvent,
+    ) => {
       moveCursorX(event.clientX);
       moveCursorY(event.clientY);
 
@@ -174,7 +261,7 @@ export default function CustomCursor() {
         overwrite: "auto",
       });
 
-      if (mode === "default") {
+      if (modeRef.current === "default") {
         gsap.to(dot, {
           opacity: 1,
           duration: 0.2,
@@ -183,10 +270,24 @@ export default function CustomCursor() {
       }
     };
 
-    const handleMouseOver = (event: MouseEvent) => {
-      const target = event.target as HTMLElement | null;
+    const handleMouseOver = (
+      event: MouseEvent,
+    ) => {
+      const target =
+        event.target as HTMLElement | null;
 
       if (!target) return;
+
+      /*
+       * NAVBAR:
+       * no special glass cursor.
+       * The NAV ITEM itself handles the
+       * liquid glass hover.
+       */
+      if (target.closest("header.fixed")) {
+        setDefaultState();
+        return;
+      }
 
       if (
         target.closest(
@@ -197,9 +298,10 @@ export default function CustomCursor() {
         return;
       }
 
-      const interactive = target.closest<HTMLElement>(
-        "a, button, [data-cursor]",
-      );
+      const interactive =
+        target.closest<HTMLElement>(
+          "a, button, [data-cursor]",
+        );
 
       if (!interactive) {
         setDefaultState();
@@ -209,8 +311,22 @@ export default function CustomCursor() {
       resolveState(interactive);
     };
 
-    const handleMouseOut = (event: MouseEvent) => {
-      const relatedTarget = event.relatedTarget as HTMLElement | null;
+    const handleMouseOut = (
+      event: MouseEvent,
+    ) => {
+      const relatedTarget =
+        event.relatedTarget as
+          | HTMLElement
+          | null;
+
+      if (
+        relatedTarget?.closest(
+          "header.fixed",
+        )
+      ) {
+        setDefaultState();
+        return;
+      }
 
       if (
         relatedTarget?.closest(
@@ -228,6 +344,7 @@ export default function CustomCursor() {
         scale: 0.84,
         duration: 0.16,
         ease: "power2.out",
+        overwrite: "auto",
       });
     };
 
@@ -236,6 +353,7 @@ export default function CustomCursor() {
         scale: 1,
         duration: 0.4,
         ease: "back.out(1.8)",
+        overwrite: "auto",
       });
     };
 
@@ -243,6 +361,7 @@ export default function CustomCursor() {
       gsap.to([cursor, dot], {
         opacity: 0,
         duration: 0.25,
+        overwrite: "auto",
       });
     };
 
@@ -250,22 +369,42 @@ export default function CustomCursor() {
       gsap.to(cursor, {
         opacity: 1,
         duration: 0.25,
+        overwrite: "auto",
       });
 
-      if (mode === "default") {
+      if (modeRef.current === "default") {
         gsap.to(dot, {
           opacity: 1,
           duration: 0.25,
+          overwrite: "auto",
         });
       }
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("mousedown", handleMouseDown);
-    window.addEventListener("mouseup", handleMouseUp);
+    window.addEventListener(
+      "mousemove",
+      handleMouseMove,
+    );
 
-    document.addEventListener("mouseover", handleMouseOver);
-    document.addEventListener("mouseout", handleMouseOut);
+    window.addEventListener(
+      "mousedown",
+      handleMouseDown,
+    );
+
+    window.addEventListener(
+      "mouseup",
+      handleMouseUp,
+    );
+
+    document.addEventListener(
+      "mouseover",
+      handleMouseOver,
+    );
+
+    document.addEventListener(
+      "mouseout",
+      handleMouseOut,
+    );
 
     document.documentElement.addEventListener(
       "mouseleave",
@@ -278,12 +417,33 @@ export default function CustomCursor() {
     );
 
     return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("mousedown", handleMouseDown);
-      window.removeEventListener("mouseup", handleMouseUp);
+      gsap.killTweensOf(cursor);
+      gsap.killTweensOf(dot);
 
-      document.removeEventListener("mouseover", handleMouseOver);
-      document.removeEventListener("mouseout", handleMouseOut);
+      window.removeEventListener(
+        "mousemove",
+        handleMouseMove,
+      );
+
+      window.removeEventListener(
+        "mousedown",
+        handleMouseDown,
+      );
+
+      window.removeEventListener(
+        "mouseup",
+        handleMouseUp,
+      );
+
+      document.removeEventListener(
+        "mouseover",
+        handleMouseOver,
+      );
+
+      document.removeEventListener(
+        "mouseout",
+        handleMouseOut,
+      );
 
       document.documentElement.removeEventListener(
         "mouseleave",
@@ -295,16 +455,18 @@ export default function CustomCursor() {
         handleMouseEnter,
       );
     };
-  }, [enabled, mode]);
+  }, [enabled]);
 
-  if (!enabled) return null;
+  if (!enabled) {
+    return null;
+  }
 
   return (
     <>
       <div
         ref={cursorRef}
         aria-hidden="true"
-        className="pointer-events-none fixed left-0 top-0 z-[9999] flex h-[32px] w-[32px] items-center justify-center rounded-full border border-black/20"
+        className="pointer-events-none fixed left-0 top-0 z-[9999] flex h-[32px] w-[32px] items-center justify-center rounded-full border border-black/20 transition-[backdrop-filter] duration-500"
       >
         {mode === "menu" && (
           <Menu
@@ -322,7 +484,8 @@ export default function CustomCursor() {
           />
         )}
 
-        {(mode === "link" || mode === "button") && (
+        {(mode === "link" ||
+          mode === "button") && (
           <ArrowUpRight
             size={18}
             strokeWidth={1.8}

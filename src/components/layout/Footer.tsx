@@ -49,15 +49,11 @@ export default function Footer() {
   return (
     <footer className="relative bg-[#f6f6f2] px-3 pb-5 pt-40 sm:px-5 lg:px-7 lg:pb-7 lg:pt-48">
       <div className="relative mx-auto max-w-[1500px]">
-
         {/* BLACK BASE */}
         <div className="relative min-h-[570px] overflow-visible rounded-[22px] bg-[#050505] px-6 pb-7 pt-[178px] text-white sm:px-10 lg:min-h-[600px] lg:px-[72px] lg:pt-[190px]">
-
           {/* FLOATING CTA CARD */}
           <div className="absolute left-1/2 top-0 z-20 w-[86%] -translate-x-1/2 -translate-y-[44%] overflow-hidden rounded-[18px] border border-white/[0.09] bg-[#111311] shadow-[0_28px_70px_rgba(0,0,0,0.28)]">
-
             <div className="relative grid min-h-[285px] lg:grid-cols-[0.53fr_0.47fr] lg:min-h-[305px]">
-
               {/* LEFT CONTENT */}
               <div className="relative z-20 flex flex-col justify-center px-7 py-9 sm:px-10 lg:px-12">
                 <p className="text-[0.62rem] font-semibold uppercase tracking-[0.2em] text-[var(--z-green)]">
@@ -65,12 +61,18 @@ export default function Footer() {
                 </p>
 
                 <h2 className="mt-4 max-w-[11ch] text-[clamp(2rem,3.4vw,3.65rem)] font-medium leading-[0.98] tracking-[-0.055em] text-white">
-                  Transform complexity into momentum.
+                  Let&apos;s get your project{" "}
+                  <span className="text-[var(--z-green)]">
+                    started
+                  </span>
+                  <span className="text-[var(--z-orange)]">
+                    .
+                  </span>
                 </h2>
 
                 <p className="mt-4 max-w-[29rem] text-[0.83rem] leading-6 text-white/45">
-                  Practical, senior-led consulting across strategy, people,
-                  operations and transformation.
+                  Tell us about the challenge, transformation
+                  or opportunity you are exploring.
                 </p>
 
                 <Link
@@ -81,7 +83,7 @@ export default function Footer() {
                     color: "#000000",
                   }}
                 >
-                  <span>Get started</span>
+                  <span>Contact us</span>
 
                   <ArrowRight
                     size={14}
@@ -93,14 +95,13 @@ export default function Footer() {
 
               {/* EARTH VISUAL */}
               <div className="relative hidden overflow-hidden lg:block">
-
                 {/* green atmospheric glow */}
                 <div className="pointer-events-none absolute right-[5%] top-[8%] h-[17rem] w-[17rem] rounded-full bg-[var(--z-green)] opacity-[0.07] blur-[105px]" />
 
                 {/* orange atmospheric glow */}
                 <div className="pointer-events-none absolute right-[22%] top-[4%] h-[12rem] w-[12rem] rounded-full bg-[var(--z-orange)] opacity-[0.05] blur-[90px]" />
 
-                {/* EARTH — MOVED UP */}
+                {/* EARTH */}
                 <div className="absolute bottom-[4%] -right-[17%] h-[150%] w-[132%] rotate-[-11deg]">
                   <Image
                     src="/images/footer/earth-horizon.png"
@@ -131,7 +132,6 @@ export default function Footer() {
 
           {/* MAIN FOOTER */}
           <div className="relative z-10 grid gap-12 lg:grid-cols-[1.75fr_0.7fr_0.9fr_0.65fr] lg:gap-12">
-
             {/* BRAND */}
             <div>
               <Link
@@ -178,7 +178,6 @@ export default function Footer() {
                       strokeWidth={1.7}
                       className="text-[var(--z-green)]"
                     />
-
                     +880 9678 224224
                   </a>
                 </div>
@@ -197,7 +196,6 @@ export default function Footer() {
                       strokeWidth={1.7}
                       className="text-[var(--z-orange)]"
                     />
-
                     zunoks.consulting@zunoks.com
                   </a>
                 </div>

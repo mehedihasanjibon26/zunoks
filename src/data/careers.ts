@@ -34,3 +34,4 @@ export const careerRoles: CareerRole[] = [
 ];
 
 export type CareersContent = typeof careers;
+

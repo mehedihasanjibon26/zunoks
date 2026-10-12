@@ -59,3 +59,4 @@ export const homepage = {
 };
 
 export type HomepageContent = typeof homepage;
+

@@ -2,11 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import {
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import {
   ArrowUpRight,
@@ -54,7 +50,8 @@ const megaMenus: Record<MenuKey, MegaMenuGroup> = {
       {
         label: "Partners",
         href: "/leadership",
-        description: "Meet the senior professionals behind ZUNOKS.",
+        description:
+          "Meet the senior professionals behind ZUNOKS.",
       },
       {
         label: "Our Story",
@@ -82,48 +79,56 @@ const megaMenus: Record<MenuKey, MegaMenuGroup> = {
 
   clients: {
     eyebrow: "Clients & Impact",
-    title: "Experience across industries and transformations.",
+    title:
+      "Experience across industries and transformations.",
     description:
       "Explore the sectors ZUNOKS serves and how consulting engagements create impact.",
     items: [
       {
         label: "Our Clients",
         href: "/clients",
-        description: "Industries, engagement areas and client experience.",
+        description:
+          "Industries, engagement areas and client experience.",
       },
       {
         label: "Case Studies",
         href: "/case-studies",
-        description: "Selected transformation and consulting stories.",
+        description:
+          "Selected transformation and consulting stories.",
       },
       {
         label: "Client Impact",
         href: "/case-studies#impact",
-        description: "Challenges, interventions and outcomes.",
+        description:
+          "Challenges, interventions and outcomes.",
       },
     ],
   },
 
   insights: {
     eyebrow: "Knowledge & Perspective",
-    title: "Ideas shaped by real leadership experience.",
+    title:
+      "Ideas shaped by real leadership experience.",
     description:
       "Thought leadership, perspectives and updates across business, people and transformation.",
     items: [
       {
         label: "Insights",
         href: "/insights",
-        description: "Featured perspectives and thought leadership.",
+        description:
+          "Featured perspectives and thought leadership.",
       },
       {
         label: "News",
         href: "/insights?type=news",
-        description: "Updates from ZUNOKS and its ecosystem.",
+        description:
+          "Updates from ZUNOKS and its ecosystem.",
       },
       {
         label: "Blogs",
         href: "/insights?type=blog",
-        description: "Ideas from leaders and subject-matter experts.",
+        description:
+          "Ideas from leaders and subject-matter experts.",
       },
     ],
   },
@@ -137,22 +142,26 @@ const megaMenus: Record<MenuKey, MegaMenuGroup> = {
       {
         label: "Work With Us",
         href: "/careers",
-        description: "Discover the ZUNOKS consulting environment.",
+        description:
+          "Discover the ZUNOKS consulting environment.",
       },
       {
         label: "Career Opportunities",
         href: "/careers#opportunities",
-        description: "Explore current and future opportunities.",
+        description:
+          "Explore current and future opportunities.",
       },
       {
         label: "Young Professionals",
         href: "/careers#young-professionals",
-        description: "Start and develop a career in consulting.",
+        description:
+          "Start and develop a career in consulting.",
       },
       {
         label: "Experienced Professionals",
         href: "/careers#experienced-professionals",
-        description: "Bring experience and expertise to wider challenges.",
+        description:
+          "Bring experience and expertise to wider challenges.",
       },
     ],
   },
@@ -180,7 +189,8 @@ export default function Navbar() {
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
-  const [activeMega, setActiveMega] = useState<MenuKey | null>(null);
+  const [activeMega, setActiveMega] =
+    useState<MenuKey | null>(null);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -229,7 +239,8 @@ export default function Navbar() {
 
     if (!nav) return;
 
-    const items = nav.querySelectorAll("[data-nav-item]");
+    const items =
+      nav.querySelectorAll("[data-nav-item]");
 
     gsap.killTweensOf(nav);
     gsap.killTweensOf(items);
@@ -320,7 +331,8 @@ export default function Navbar() {
 
     if (!mega || !activeMega) return;
 
-    const items = mega.querySelectorAll("[data-mega-item]");
+    const items =
+      mega.querySelectorAll("[data-mega-item]");
 
     const ctx = gsap.context(() => {
       gsap.set(items, {
@@ -338,14 +350,16 @@ export default function Navbar() {
           y: -20,
           scale: 0.975,
           filter: "blur(14px)",
-          clipPath: "inset(0 0 100% 0 round 28px)",
+          clipPath:
+            "inset(0 0 100% 0 round 28px)",
         },
         {
           opacity: 1,
           y: 0,
           scale: 1,
           filter: "blur(0px)",
-          clipPath: "inset(0 0 0% 0 round 28px)",
+          clipPath:
+            "inset(0 0 0% 0 round 28px)",
           duration: 1.05,
           ease: "expo.inOut",
         },
@@ -373,7 +387,8 @@ export default function Navbar() {
 
     if (!panel || !searchOpen) return;
 
-    const animatedItems = panel.querySelectorAll("[data-search-item]");
+    const animatedItems =
+      panel.querySelectorAll("[data-search-item]");
 
     const ctx = gsap.context(() => {
       gsap.set(animatedItems, {
@@ -395,14 +410,16 @@ export default function Navbar() {
           y: -18,
           scale: 0.975,
           filter: "blur(14px)",
-          clipPath: "inset(0 0 0 100% round 28px)",
+          clipPath:
+            "inset(0 0 0 100% round 28px)",
         },
         {
           opacity: 1,
           y: 0,
           scale: 1,
           filter: "blur(0px)",
-          clipPath: "inset(0 0 0 0% round 28px)",
+          clipPath:
+            "inset(0 0 0 0% round 28px)",
           duration: 1.05,
           ease: "expo.inOut",
         },
@@ -426,10 +443,13 @@ export default function Navbar() {
   }, [searchOpen]);
 
   useEffect(() => {
-    if (!menuOpen || !mobilePanelRef.current) return;
+    if (!menuOpen || !mobilePanelRef.current)
+      return;
 
     const panel = mobilePanelRef.current;
-    const items = panel.querySelectorAll("[data-mobile-item]");
+
+    const items =
+      panel.querySelectorAll("[data-mobile-item]");
 
     const ctx = gsap.context(() => {
       gsap.set(items, {
@@ -474,7 +494,9 @@ export default function Navbar() {
   }, [menuOpen]);
 
   useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
+    const handleKeyDown = (
+      event: KeyboardEvent,
+    ) => {
       if (event.key === "Escape") {
         setSearchOpen(false);
         setMenuOpen(false);
@@ -482,16 +504,20 @@ export default function Navbar() {
       }
     };
 
-    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener(
+      "keydown",
+      handleKeyDown,
+    );
 
     return () => {
-      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener(
+        "keydown",
+        handleKeyDown,
+      );
     };
   }, []);
 
   useEffect(() => {
-    // Reset temporary navigation states after route change.
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMenuOpen(false);
     setSearchOpen(false);
     setActiveMega(null);
@@ -516,7 +542,9 @@ export default function Navbar() {
   };
 
   const toggleMega = (key: MenuKey) => {
-    setActiveMega((current) => (current === key ? null : key));
+    setActiveMega((current) =>
+      current === key ? null : key,
+    );
   };
 
   const closeNavigation = () => {
@@ -524,13 +552,88 @@ export default function Navbar() {
     setActiveMega(null);
   };
 
-  const currentMega = activeMega ? megaMenus[activeMega] : null;
+  const currentMega = activeMega
+    ? megaMenus[activeMega]
+    : null;
 
-  const navItemClass =
-    "group relative flex shrink-0 items-center gap-1.5 py-2 font-sans text-[0.95rem] font-medium leading-none tracking-[-0.01em] text-black/70 transition-colors duration-300 hover:text-black";
+  /*
+   * LIQUID GLASS NAV ITEM
+   *
+   * Hovering the NAV ITEM itself creates the
+   * glass/water effect. Cursor remains normal.
+   */
+  const navItemClass = `
+    group
+    relative
+    flex
+    shrink-0
+    items-center
+    gap-1.5
+    overflow-hidden
+    rounded-full
+    border
+    border-transparent
+    px-3.5
+    py-2.5
+    font-sans
+    text-[0.95rem]
+    font-medium
+    leading-none
+    tracking-[-0.01em]
+    text-black/72
+    transition-all
+    duration-500
+    ease-[cubic-bezier(0.22,1,0.36,1)]
 
-  const navLabelClass =
-    "block font-sans text-[0.95rem] font-medium leading-none tracking-[-0.01em]";
+    before:pointer-events-none
+    before:absolute
+    before:inset-0
+    before:-z-10
+    before:rounded-full
+    before:bg-white/0
+    before:opacity-0
+    before:backdrop-blur-0
+    before:transition-all
+    before:duration-500
+
+    after:pointer-events-none
+    after:absolute
+    after:left-[14%]
+    after:top-[7%]
+    after:-z-10
+    after:h-[38%]
+    after:w-[48%]
+    after:rotate-[-10deg]
+    after:rounded-full
+    after:bg-white/0
+    after:blur-[4px]
+    after:transition-all
+    after:duration-500
+
+    hover:-translate-y-[1px]
+    hover:border-white/60
+    hover:text-black
+    hover:shadow-[0_7px_22px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.85),inset_0_-1px_0_rgba(49,155,66,0.08)]
+    hover:before:bg-white/[0.22]
+    hover:before:opacity-100
+    hover:before:backdrop-blur-[16px]
+    hover:after:bg-white/35
+
+    focus-visible:border-white/65
+    focus-visible:bg-white/[0.22]
+    focus-visible:outline-none
+  `;
+
+  const navLabelClass = `
+    relative
+    z-10
+    block
+    font-sans
+    text-[0.95rem]
+    font-medium
+    leading-none
+    tracking-[-0.01em]
+  `;
 
   return (
     <>
@@ -544,12 +647,20 @@ export default function Navbar() {
       >
         <div
           ref={shellRef}
-          className={`relative mx-auto flex w-full max-w-[var(--container-wide)] items-center border border-black/10 transition-all duration-500 ${
+          className={`relative mx-auto flex w-full max-w-[var(--container-wide)] items-center overflow-hidden border transition-all duration-500 before:pointer-events-none before:absolute before:inset-x-[8%] before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-white/90 before:to-transparent after:pointer-events-none after:absolute after:-right-8 after:-top-12 after:h-28 after:w-28 after:rounded-full after:bg-[var(--z-green)] after:opacity-[0.10] after:blur-[42px] ${
             scrolled
-              ? "rounded-full bg-white/88 px-4 py-2.5 shadow-[0_14px_45px_rgba(0,0,0,0.08)] backdrop-blur-2xl lg:px-5"
-              : "rounded-full bg-white/74 px-5 py-3.5 backdrop-blur-xl lg:px-6"
+              ? "rounded-full border-white/55 bg-white/[0.46] px-4 py-2.5 shadow-[0_18px_60px_rgba(0,0,0,0.12),0_0_0_1px_rgba(49,155,66,0.055),inset_0_1px_0_rgba(255,255,255,0.72)] backdrop-blur-[34px] backdrop-saturate-[1.35] lg:px-5"
+              : "rounded-full border-white/50 bg-white/[0.36] px-5 py-3.5 shadow-[0_16px_50px_rgba(0,0,0,0.08),0_0_0_1px_rgba(49,155,66,0.05),inset_0_1px_0_rgba(255,255,255,0.7)] backdrop-blur-[30px] backdrop-saturate-[1.3] lg:px-6"
           }`}
         >
+          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(105deg,rgba(49,155,66,0.055)_0%,rgba(255,255,255,0.015)_42%,rgba(239,125,34,0.045)_100%)]" />
+
+          <div className="pointer-events-none absolute -left-10 top-1/2 h-28 w-36 -translate-y-1/2 rounded-full bg-[var(--z-green)] opacity-[0.055] blur-[46px]" />
+
+          <div className="pointer-events-none absolute -right-8 top-1/2 h-24 w-32 -translate-y-1/2 rounded-full bg-[var(--z-orange)] opacity-[0.045] blur-[44px]" />
+
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white/[0.18] via-transparent to-white/[0.04]" />
+
           <Link
             href="/"
             className="relative z-20 flex shrink-0 items-center"
@@ -570,34 +681,42 @@ export default function Navbar() {
             />
           </Link>
 
-          {/* CENTER NAVIGATION ZONE */}
-          <div className="hidden min-w-0 flex-1 items-center justify-center px-5 xl:flex">
+          <div className="relative z-20 hidden min-w-0 flex-1 items-center justify-center px-5 xl:flex">
             <div
               ref={desktopNavRef}
               className="hidden items-center justify-center overflow-hidden whitespace-nowrap"
             >
-              <div className="flex items-center justify-center gap-5 2xl:gap-6">
+              <div className="flex items-center justify-center gap-1 2xl:gap-1.5">
                 <Link
                   data-nav-item
                   href="/"
                   onClick={closeNavigation}
                   className={navItemClass}
                 >
-                  <span className={navLabelClass}>Home</span>
+                  <span className={navLabelClass}>
+                    Home
+                  </span>
                 </Link>
 
                 <button
                   data-nav-item
                   type="button"
-                  onClick={() => toggleMega("about")}
+                  onClick={() =>
+                    toggleMega("about")
+                  }
                   className={navItemClass}
                 >
-                  <span className={navLabelClass}>About Us</span>
+                  <span className={navLabelClass}>
+                    About Us
+                  </span>
+
                   <ChevronDown
                     size={13}
                     strokeWidth={1.8}
-                    className={`shrink-0 transition-transform duration-500 ${
-                      activeMega === "about" ? "rotate-180" : ""
+                    className={`relative z-10 shrink-0 transition-transform duration-500 ${
+                      activeMega === "about"
+                        ? "rotate-180"
+                        : ""
                     }`}
                   />
                 </button>
@@ -605,15 +724,22 @@ export default function Navbar() {
                 <button
                   data-nav-item
                   type="button"
-                  onClick={() => toggleMega("services")}
+                  onClick={() =>
+                    toggleMega("services")
+                  }
                   className={navItemClass}
                 >
-                  <span className={navLabelClass}>Our Services</span>
+                  <span className={navLabelClass}>
+                    Our Services
+                  </span>
+
                   <ChevronDown
                     size={13}
                     strokeWidth={1.8}
-                    className={`shrink-0 transition-transform duration-500 ${
-                      activeMega === "services" ? "rotate-180" : ""
+                    className={`relative z-10 shrink-0 transition-transform duration-500 ${
+                      activeMega === "services"
+                        ? "rotate-180"
+                        : ""
                     }`}
                   />
                 </button>
@@ -621,15 +747,22 @@ export default function Navbar() {
                 <button
                   data-nav-item
                   type="button"
-                  onClick={() => toggleMega("clients")}
+                  onClick={() =>
+                    toggleMega("clients")
+                  }
                   className={navItemClass}
                 >
-                  <span className={navLabelClass}>Our Clients</span>
+                  <span className={navLabelClass}>
+                    Our Clients
+                  </span>
+
                   <ChevronDown
                     size={13}
                     strokeWidth={1.8}
-                    className={`shrink-0 transition-transform duration-500 ${
-                      activeMega === "clients" ? "rotate-180" : ""
+                    className={`relative z-10 shrink-0 transition-transform duration-500 ${
+                      activeMega === "clients"
+                        ? "rotate-180"
+                        : ""
                     }`}
                   />
                 </button>
@@ -637,15 +770,22 @@ export default function Navbar() {
                 <button
                   data-nav-item
                   type="button"
-                  onClick={() => toggleMega("insights")}
+                  onClick={() =>
+                    toggleMega("insights")
+                  }
                   className={navItemClass}
                 >
-                  <span className={navLabelClass}>Insights</span>
+                  <span className={navLabelClass}>
+                    Insights
+                  </span>
+
                   <ChevronDown
                     size={13}
                     strokeWidth={1.8}
-                    className={`shrink-0 transition-transform duration-500 ${
-                      activeMega === "insights" ? "rotate-180" : ""
+                    className={`relative z-10 shrink-0 transition-transform duration-500 ${
+                      activeMega === "insights"
+                        ? "rotate-180"
+                        : ""
                     }`}
                   />
                 </button>
@@ -653,15 +793,22 @@ export default function Navbar() {
                 <button
                   data-nav-item
                   type="button"
-                  onClick={() => toggleMega("work")}
+                  onClick={() =>
+                    toggleMega("work")
+                  }
                   className={navItemClass}
                 >
-                  <span className={navLabelClass}>Work With Us</span>
+                  <span className={navLabelClass}>
+                    Work With Us
+                  </span>
+
                   <ChevronDown
                     size={13}
                     strokeWidth={1.8}
-                    className={`shrink-0 transition-transform duration-500 ${
-                      activeMega === "work" ? "rotate-180" : ""
+                    className={`relative z-10 shrink-0 transition-transform duration-500 ${
+                      activeMega === "work"
+                        ? "rotate-180"
+                        : ""
                     }`}
                   />
                 </button>
@@ -672,7 +819,9 @@ export default function Navbar() {
                   onClick={closeNavigation}
                   className={navItemClass}
                 >
-                  <span className={navLabelClass}>Social Impact</span>
+                  <span className={navLabelClass}>
+                    Social Impact
+                  </span>
                 </Link>
 
                 <Link
@@ -681,23 +830,28 @@ export default function Navbar() {
                   onClick={closeNavigation}
                   className={navItemClass}
                 >
-                  <span className={navLabelClass}>Contact</span>
+                  <span className={navLabelClass}>
+                    Contact
+                  </span>
                 </Link>
               </div>
             </div>
           </div>
 
-          {/* RIGHT CONTROLS */}
           <div className="relative z-20 ml-auto hidden shrink-0 items-center gap-3 xl:flex">
             <button
               type="button"
               onClick={toggleMenu}
-              className={`flex h-[46px] w-[46px] shrink-0 items-center justify-center rounded-full border transition-all duration-500 ${
+              className={`flex h-[46px] w-[46px] shrink-0 items-center justify-center rounded-full border shadow-[inset_0_1px_0_rgba(255,255,255,0.62)] backdrop-blur-[18px] transition-all duration-500 ${
                 menuOpen
-                  ? "border-black bg-black text-white"
-                  : "border-black/10 bg-white/65 text-black hover:border-[var(--z-green)] hover:bg-[var(--z-green)] hover:text-white"
+                  ? "border-black/80 bg-black/90 text-white"
+                  : "border-white/55 bg-white/[0.30] text-black hover:border-white/80 hover:bg-white/[0.42]"
               }`}
-              aria-label={menuOpen ? "Close navigation" : "Open navigation"}
+              aria-label={
+                menuOpen
+                  ? "Close navigation"
+                  : "Open navigation"
+              }
               aria-expanded={menuOpen}
             >
               <span className="relative flex h-[18px] w-[18px] items-center justify-center">
@@ -726,11 +880,15 @@ export default function Navbar() {
             <button
               type="button"
               onClick={toggleSearch}
-              aria-label={searchOpen ? "Close search" : "Open search"}
-              className={`group flex h-[46px] w-[46px] shrink-0 items-center justify-center rounded-full border transition-all duration-500 ${
+              aria-label={
+                searchOpen
+                  ? "Close search"
+                  : "Open search"
+              }
+              className={`group flex h-[46px] w-[46px] shrink-0 items-center justify-center rounded-full border shadow-[inset_0_1px_0_rgba(255,255,255,0.62)] backdrop-blur-[18px] transition-all duration-500 ${
                 searchOpen
                   ? "border-[var(--z-green)] bg-[var(--z-green)] text-white"
-                  : "border-black/10 bg-white/70 text-black hover:border-[var(--z-green)] hover:bg-[var(--z-green)] hover:text-white"
+                  : "border-white/55 bg-white/[0.30] text-black hover:border-white/80 hover:bg-white/[0.42]"
               }`}
             >
               {searchOpen ? (
@@ -749,39 +907,56 @@ export default function Navbar() {
             <button
               type="button"
               onClick={toggleMenu}
-              className={`flex h-[44px] w-[44px] items-center justify-center rounded-full border ${
+              className={`flex h-[44px] w-[44px] items-center justify-center rounded-full border shadow-[inset_0_1px_0_rgba(255,255,255,0.62)] backdrop-blur-[18px] ${
                 menuOpen
                   ? "border-black bg-black text-white"
-                  : "border-black/10 bg-white/65 text-black"
+                  : "border-white/55 bg-white/[0.30] text-black"
               }`}
-              aria-label={menuOpen ? "Close navigation" : "Open navigation"}
+              aria-label={
+                menuOpen
+                  ? "Close navigation"
+                  : "Open navigation"
+              }
             >
-              {menuOpen ? <X size={18} /> : <Menu size={18} />}
+              {menuOpen ? (
+                <X size={18} />
+              ) : (
+                <Menu size={18} />
+              )}
             </button>
 
             <button
               type="button"
               onClick={toggleSearch}
-              aria-label={searchOpen ? "Close search" : "Open search"}
-              className={`flex h-[44px] w-[44px] items-center justify-center rounded-full border ${
+              aria-label={
+                searchOpen
+                  ? "Close search"
+                  : "Open search"
+              }
+              className={`flex h-[44px] w-[44px] items-center justify-center rounded-full border shadow-[inset_0_1px_0_rgba(255,255,255,0.62)] backdrop-blur-[18px] ${
                 searchOpen
                   ? "border-[var(--z-green)] bg-[var(--z-green)] text-white"
-                  : "border-black/10 bg-white/70 text-black"
+                  : "border-white/55 bg-white/[0.30] text-black"
               }`}
             >
-              {searchOpen ? <X size={18} /> : <Search size={18} />}
+              {searchOpen ? (
+                <X size={18} />
+              ) : (
+                <Search size={18} />
+              )}
             </button>
           </div>
         </div>
 
-        {/* MEGA MENU */}
         {currentMega && menuOpen && (
           <div
             ref={megaRef}
-            className="mx-auto mt-3 hidden w-full max-w-[var(--container-wide)] overflow-hidden rounded-[1.8rem] border border-white/70 bg-white/72 shadow-[0_30px_100px_rgba(0,0,0,0.14)] backdrop-blur-[30px] xl:block"
+            className="mx-auto mt-3 hidden w-full max-w-[var(--container-wide)] overflow-hidden rounded-[1.8rem] border border-white/50 bg-white/[0.40] shadow-[0_30px_100px_rgba(0,0,0,0.16),inset_0_1px_0_rgba(255,255,255,0.72)] backdrop-blur-[38px] backdrop-saturate-[1.35] xl:block"
           >
             <div className="relative overflow-hidden">
-              <div className="pointer-events-none absolute -right-20 -top-28 h-[24rem] w-[24rem] rounded-full bg-[var(--z-green)] opacity-[0.08] blur-[100px]" />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/[0.18] via-transparent to-white/[0.04]" />
+
+              <div className="pointer-events-none absolute -right-20 -top-28 h-[24rem] w-[24rem] rounded-full bg-[var(--z-green)] opacity-[0.09] blur-[100px]" />
 
               <div className="pointer-events-none absolute -bottom-32 left-[25%] h-[20rem] w-[20rem] rounded-full bg-[var(--z-orange)] opacity-[0.08] blur-[100px]" />
 
@@ -803,6 +978,7 @@ export default function Navbar() {
 
                   <div className="mt-10 flex items-center gap-3">
                     <span className="h-2 w-2 rounded-full bg-[var(--z-orange)]" />
+
                     <span className="text-[0.67rem] uppercase tracking-[0.17em] text-black/35">
                       Inspire to Innovate
                     </span>
@@ -810,53 +986,60 @@ export default function Navbar() {
                 </div>
 
                 <div className="grid grid-cols-2 gap-x-8">
-                  {currentMega.items.map((item, index) => (
-                    <Link
-                      data-mega-item
-                      key={`${item.href}-${index}`}
-                      href={item.href}
-                      onClick={closeNavigation}
-                      className="group flex min-h-[92px] items-start justify-between gap-5 border-t border-black/10 py-5"
-                    >
-                      <div className="flex gap-4">
-                        <span className="mt-1 text-[0.65rem] font-medium text-black/25">
-                          {String(index + 1).padStart(2, "0")}
-                        </span>
+                  {currentMega.items.map(
+                    (item, index) => (
+                      <Link
+                        data-mega-item
+                        key={`${item.href}-${index}`}
+                        href={item.href}
+                        onClick={closeNavigation}
+                        className="group flex min-h-[92px] items-start justify-between gap-5 border-t border-black/10 py-5"
+                      >
+                        <div className="flex gap-4">
+                          <span className="mt-1 text-[0.65rem] font-medium text-black/25">
+                            {String(
+                              index + 1,
+                            ).padStart(2, "0")}
+                          </span>
 
-                        <div>
-                          <p className="text-[0.95rem] font-medium leading-tight">
-                            {item.label}
-                          </p>
-
-                          {item.description && (
-                            <p className="mt-2 max-w-[24rem] text-xs leading-5 text-black/45">
-                              {item.description}
+                          <div>
+                            <p className="text-[0.95rem] font-medium leading-tight">
+                              {item.label}
                             </p>
-                          )}
-                        </div>
-                      </div>
 
-                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-black/10 transition-all duration-300 group-hover:border-[var(--z-green)] group-hover:bg-[var(--z-green)] group-hover:text-white">
-                        <ArrowUpRight size={14} />
-                      </div>
-                    </Link>
-                  ))}
+                            {item.description && (
+                              <p className="mt-2 max-w-[24rem] text-xs leading-5 text-black/45">
+                                {item.description}
+                              </p>
+                            )}
+                          </div>
+                        </div>
+
+                        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/60 bg-white/[0.28] backdrop-blur-xl transition-all duration-300 group-hover:border-[var(--z-green)] group-hover:bg-[var(--z-green)] group-hover:text-white">
+                          <ArrowUpRight
+                            size={14}
+                          />
+                        </div>
+                      </Link>
+                    ),
+                  )}
                 </div>
               </div>
             </div>
           </div>
         )}
 
-        {/* SEARCH PANEL */}
         {searchOpen && (
           <div
             ref={searchPanelRef}
-            className="mx-auto mt-3 w-full max-w-[var(--container-wide)] overflow-hidden rounded-[1.8rem] border border-white/70 bg-white/76 shadow-[0_30px_100px_rgba(0,0,0,0.14)] backdrop-blur-[32px]"
+            className="mx-auto mt-3 w-full max-w-[var(--container-wide)] overflow-hidden rounded-[1.8rem] border border-white/50 bg-white/[0.42] shadow-[0_30px_100px_rgba(0,0,0,0.16),inset_0_1px_0_rgba(255,255,255,0.75)] backdrop-blur-[40px] backdrop-saturate-[1.4]"
           >
             <div className="relative overflow-hidden px-6 py-8 lg:px-10 lg:py-10">
-              <div className="pointer-events-none absolute -right-20 -top-24 h-[22rem] w-[22rem] rounded-full bg-[var(--z-green)] opacity-[0.08] blur-[100px]" />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/[0.2] via-transparent to-white/[0.05]" />
 
-              <div className="pointer-events-none absolute -bottom-28 left-[18%] h-[18rem] w-[18rem] rounded-full bg-[var(--z-orange)] opacity-[0.07] blur-[100px]" />
+              <div className="pointer-events-none absolute -right-20 -top-24 h-[22rem] w-[22rem] rounded-full bg-[var(--z-green)] opacity-[0.09] blur-[100px]" />
+
+              <div className="pointer-events-none absolute -bottom-28 left-[18%] h-[18rem] w-[18rem] rounded-full bg-[var(--z-orange)] opacity-[0.08] blur-[100px]" />
 
               <div className="relative">
                 <div
@@ -905,21 +1088,27 @@ export default function Navbar() {
                   </p>
 
                   <div className="mt-4 flex flex-wrap gap-2.5">
-                    {searchSuggestions.map((suggestion) => (
-                      <button
-                        key={suggestion}
-                        type="button"
-                        onClick={() => {
-                          if (searchInputRef.current) {
-                            searchInputRef.current.value = suggestion;
-                            searchInputRef.current.focus();
-                          }
-                        }}
-                        className="rounded-full border border-black/10 bg-white/55 px-4 py-2.5 text-sm text-black/65 transition-all duration-300 hover:border-[var(--z-green)] hover:bg-[var(--z-green)] hover:text-white"
-                      >
-                        {suggestion}
-                      </button>
-                    ))}
+                    {searchSuggestions.map(
+                      (suggestion) => (
+                        <button
+                          key={suggestion}
+                          type="button"
+                          onClick={() => {
+                            if (
+                              searchInputRef.current
+                            ) {
+                              searchInputRef.current.value =
+                                suggestion;
+
+                              searchInputRef.current.focus();
+                            }
+                          }}
+                          className="rounded-full border border-white/55 bg-white/[0.28] px-4 py-2.5 text-sm text-black/65 shadow-[inset_0_1px_0_rgba(255,255,255,0.62)] backdrop-blur-xl transition-all duration-300 hover:border-[var(--z-green)] hover:bg-[var(--z-green)] hover:text-white"
+                        >
+                          {suggestion}
+                        </button>
+                      ),
+                    )}
                   </div>
                 </div>
               </div>
@@ -928,11 +1117,10 @@ export default function Navbar() {
         )}
       </header>
 
-      {/* MOBILE MENU */}
       {menuOpen && (
         <div
           ref={mobilePanelRef}
-          className="fixed inset-0 z-[250] bg-black/95 pt-[92px] text-white backdrop-blur-xl xl:hidden"
+          className="fixed inset-0 z-[250] bg-black/[0.84] pt-[92px] text-white backdrop-blur-[30px] xl:hidden"
         >
           <div className="flex h-full flex-col overflow-y-auto px-6 pb-8">
             <nav className="flex flex-col">
@@ -943,7 +1131,10 @@ export default function Navbar() {
                 ["Our Clients", "/clients"],
                 ["Insights", "/insights"],
                 ["Work With Us", "/careers"],
-                ["Social Impact", "/social-impact"],
+                [
+                  "Social Impact",
+                  "/social-impact",
+                ],
                 ["Contact", "/contact"],
               ].map(([label, href]) => (
                 <Link
@@ -960,7 +1151,8 @@ export default function Navbar() {
 
             <div className="mt-auto pt-8">
               <p className="max-w-[17rem] text-xs leading-6 text-white/40">
-                Strategy. People. Leadership. Operations. Transformation.
+                Strategy. People. Leadership. Operations.
+                Transformation.
               </p>
             </div>
           </div>

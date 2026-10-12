@@ -64,6 +64,10 @@ video {
   height: auto;
 }
 
+/* =========================================================
+   FORM ELEMENTS
+   ========================================================= */
+
 button,
 input,
 textarea,
@@ -72,10 +76,11 @@ select {
 }
 
 button {
-  border: 0;
-  padding: 0;
-  background: none;
-  color: inherit;
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: default;
 }
 
 button,
@@ -88,7 +93,6 @@ a {
    ========================================================= */
 
 a {
-  color: inherit;
   text-decoration: none;
 }
 
@@ -199,6 +203,42 @@ strong {
 }
 
 /* =========================================================
+   HOMEPAGE — COMPACT SECTION MODE
+   ========================================================= */
+
+/*
+ * Hero remains untouched.
+ *
+ * All homepage sections after Hero use .home-section-compact.
+ * We reduce only their external vertical breathing room.
+ *
+ * No content is removed.
+ * No cards are removed.
+ * No typography is changed.
+ * No animation logic is changed.
+ */
+
+.home-section-compact > section {
+  padding-top: clamp(2.75rem, 3.6vw, 4rem) !important;
+  padding-bottom: clamp(2.75rem, 3.6vw, 4rem) !important;
+}
+
+/*
+ * Prevent small visual seams between consecutive sections.
+ */
+.home-section-compact + .home-section-compact {
+  margin-top: -1px;
+}
+
+/*
+ * Reduce oversized empty spacing commonly used before
+ * the first major content block inside homepage sections.
+ */
+.home-section-compact > section > div {
+  margin-top: 0;
+}
+
+/* =========================================================
    BASIC UI UTILITIES
    ========================================================= */
 
@@ -253,6 +293,13 @@ strong {
    RESPONSIVE
    ========================================================= */
 
+@media (max-width: 1024px) {
+  .home-section-compact > section {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+}
+
 @media (max-width: 768px) {
   ::-webkit-scrollbar {
     width: 4px;
@@ -260,5 +307,10 @@ strong {
 
   .section {
     padding-block: var(--section-space);
+  }
+
+  .home-section-compact > section {
+    padding-top: 2.5rem !important;
+    padding-bottom: 2.5rem !important;
   }
 }

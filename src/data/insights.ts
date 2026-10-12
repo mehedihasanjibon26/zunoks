@@ -73,3 +73,4 @@ export const insights: Insight[] = [
     isDummy: true,
   },
 ];
+

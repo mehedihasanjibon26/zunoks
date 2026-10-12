@@ -18,3 +18,4 @@ export const contact = {
 };
 
 export type ContactContent = typeof contact;
+

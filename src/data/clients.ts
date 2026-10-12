@@ -24,3 +24,4 @@ export const clients = {
 
 // Client logos are intentionally omitted until permission and assets are available.
 export type ClientsContent = typeof clients;
+

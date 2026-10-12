@@ -6,9 +6,13 @@ import gsap from "gsap";
 
 type PreloaderProps = {
   onComplete?: () => void;
+  onRevealStart?: () => void;
 };
 
-export default function Preloader({ onComplete }: PreloaderProps) {
+export default function Preloader({
+  onComplete,
+  onRevealStart,
+}: PreloaderProps) {
   const rootRef = useRef<HTMLDivElement>(null);
   const logoMaskRef = useRef<HTMLDivElement>(null);
   const logoRef = useRef<HTMLDivElement>(null);
@@ -39,7 +43,6 @@ export default function Preloader({ onComplete }: PreloaderProps) {
         defaults: {
           ease: "power4.out",
         },
-        onComplete,
       });
 
       tl.to(logoRef.current, {
@@ -54,42 +57,61 @@ export default function Preloader({ onComplete }: PreloaderProps) {
           },
           "-=0.35",
         )
+
+        // green shuffle
         .to(
           greenPanelRef.current,
           {
             yPercent: 0,
-            duration: 0.7,
+            duration: 0.72,
             ease: "power4.inOut",
           },
           "+=0.25",
         )
+
+        // orange shuffle follows green
         .to(
           orangePanelRef.current,
           {
             yPercent: 0,
-            duration: 0.7,
+            duration: 0.72,
             ease: "power4.inOut",
           },
           "-=0.58",
         )
+
+        // tell controller to start revealing landing page
+        .call(
+          () => {
+            onRevealStart?.();
+          },
+          [],
+          "+=0.02",
+        )
+
+        // final cinematic exit
         .to(
           rootRef.current,
           {
             yPercent: -100,
-            duration: 0.95,
-            ease: "power4.inOut",
+            duration: 1.15,
+            ease: "expo.inOut",
           },
-          "+=0.05",
-        );
+          "+=0.04",
+        )
+
+        .call(() => {
+          onComplete?.();
+        });
     }, rootRef);
 
     return () => ctx.revert();
-  }, [onComplete]);
+  }, [onComplete, onRevealStart]);
 
   return (
     <div
       ref={rootRef}
-      className="fixed inset-0 z-[1000] overflow-hidden bg-black text-white"
+      className="fixed inset-0 z-[1000] overflow-hidden bg-black text-white will-change-transform"
     >
       <div
         ref={greenPanelRef}
@@ -126,7 +148,7 @@ export default function Preloader({ onComplete }: PreloaderProps) {
           <div className="mt-8 h-px w-full max-w-[280px] overflow-hidden bg-white/15">
             <div
               ref={lineRef}
-              className="h-full w-full bg-white"
+              className="h-full w-full bg-white shadow-[0_0_22px_rgba(255,255,255,0.75)]"
             />
           </div>
         </div>

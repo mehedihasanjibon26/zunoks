@@ -42,3 +42,4 @@ export const impactInitiatives: ImpactInitiative[] = [
 ];
 
 export type SocialImpactContent = typeof socialImpact;
+

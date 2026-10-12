@@ -80,3 +80,4 @@ export const partners: Partner[] = [
     profilePage: 8,
   },
 ];
+
