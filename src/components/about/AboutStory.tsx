@@ -12,6 +12,7 @@ import {
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { partners } from "@/data/partners";
+import { assetPath } from "@/lib/assetPath";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -227,7 +228,7 @@ export default function AboutStory() {
             className="relative min-h-[500px] overflow-hidden rounded-[2.3rem] border border-white/[0.12] bg-white/[0.04] shadow-[0_30px_90px_rgba(0,0,0,0.32)]"
           >
             <Image
-              src="/images/about/zunoks-founders-group.png"
+              src={assetPath("/images/about/zunoks-founders-group.png")}
               alt="Founders of ZUNOKS"
               fill
               priority

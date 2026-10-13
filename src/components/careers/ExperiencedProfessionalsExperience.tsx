@@ -12,10 +12,13 @@ import {
 } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { assetPath } from "@/lib/assetPath";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const heroImage = "/images/careers/experienced-professionals-hero.png";
+const heroImage = assetPath(
+  "/images/careers/experienced-professionals-hero.png",
+);
 
 export default function ExperiencedProfessionalsExperience() {
   const sectionRef = useRef<HTMLElement>(null);

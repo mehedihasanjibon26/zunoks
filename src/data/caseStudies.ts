@@ -1,4 +1,5 @@
 import type { Industry } from "./clients";
+import { assetPath } from "@/lib/assetPath";
 
 export type CaseStudy = {
   slug: string;
@@ -23,7 +24,7 @@ export const caseStudies: CaseStudy[] = [
     challenge: "Demo: two organizations need a shared operating direction after a merger.",
     approach: "Illustrate a ZUNOKS approach using leadership workshops, role mapping and a staged employee-transition plan.",
     impact: "Intended outcome: clearer responsibilities and a shared transition roadmap. No measured client result is claimed.",
-    image: "/images/case-studies/merger-placeholder.webp",
+    image: assetPath("/images/case-studies/merger-placeholder.webp"),
     isDummy: true,
   },
   {
@@ -34,7 +35,7 @@ export const caseStudies: CaseStudy[] = [
     challenge: "Demo: production and sales teams plan on different assumptions.",
     approach: "Illustrate process mapping, a common planning cadence and an S&OP review across functions.",
     impact: "Intended outcome: a coordinated planning process and clearer operating decisions. No productivity or cost savings are asserted.",
-    image: "/images/case-studies/operations-placeholder.webp",
+    image: assetPath("/images/case-studies/operations-placeholder.webp"),
     isDummy: true,
   },
   {
@@ -45,7 +46,7 @@ export const caseStudies: CaseStudy[] = [
     challenge: "Demo: managers need a consistent way to connect individual goals with business priorities.",
     approach: "Illustrate an HR review, role-based objectives and manager guidance for regular feedback.",
     impact: "Intended outcome: a clearer performance framework. Employee or business improvements have not been measured.",
-    image: "/images/case-studies/people-placeholder.webp",
+    image: assetPath("/images/case-studies/people-placeholder.webp"),
     isDummy: true,
   },
   {
@@ -56,7 +57,7 @@ export const caseStudies: CaseStudy[] = [
     challenge: "Demo: an organization needs to define its requirements for a senior operations leader.",
     approach: "Illustrate a role brief, talent mapping and structured assessment against agreed leadership criteria.",
     impact: "Intended outcome: a considered shortlist for discussion. No appointment or hiring outcome is claimed.",
-    image: "/images/case-studies/search-placeholder.webp",
+    image: assetPath("/images/case-studies/search-placeholder.webp"),
     isDummy: true,
   },
 ];

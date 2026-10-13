@@ -13,6 +13,7 @@ import {
   Target,
   Users,
 } from "lucide-react";
+import { assetPath } from "@/lib/assetPath";
 
 type ServiceItem = {
   number: string;
@@ -37,7 +38,7 @@ const services: ServiceItem[] = [
     description:
       "Supporting organizations with strategic direction, business planning and interventions designed to create sustainable value.",
     href: "/services/strategic-interventions",
-    image: "/images/hero/hero-strategy.png",
+    image: assetPath("/images/hero/hero-strategy.png"),
     icon: Target,
     tone: "green",
   },
@@ -48,7 +49,7 @@ const services: ServiceItem[] = [
     description:
       "People strategy, organization capability and HR solutions designed to strengthen performance and culture.",
     href: "/services/human-resources",
-    image: "/images/hero/hero-vision.png",
+    image: assetPath("/images/hero/hero-vision.png"),
     icon: Users,
     tone: "orange",
   },
@@ -59,7 +60,7 @@ const services: ServiceItem[] = [
     description:
       "AI-driven gamified assessments that combine engagement, gamification and neuroscience-inspired evaluation.",
     href: "/services/gamified-recruitment",
-    image: "/images/hero/hero-operations.png",
+    image: assetPath("/images/hero/hero-operations.png"),
     icon: BrainCircuit,
     tone: "green",
   },
@@ -70,7 +71,7 @@ const services: ServiceItem[] = [
     description:
       "Operational excellence across manufacturing and supply-chain functions to drive resilience and business impact.",
     href: "/services/manufacturing-supply-chain",
-    image: "/images/hero/hero-operations.png",
+    image: assetPath("/images/hero/hero-operations.png"),
     icon: Factory,
     tone: "orange",
   },
@@ -81,7 +82,7 @@ const services: ServiceItem[] = [
     description:
       "Senior and executive talent search aligned with business priorities, leadership needs and organizational fit.",
     href: "/services/executive-search",
-    image: "/images/hero/hero-strategy.png",
+    image: assetPath("/images/hero/hero-strategy.png"),
     icon: Search,
     tone: "green",
   },
@@ -92,7 +93,7 @@ const services: ServiceItem[] = [
     description:
       "Focused coaching interventions that help leaders improve effectiveness, confidence and organizational influence.",
     href: "/services/executive-coaching",
-    image: "/images/hero/hero-vision.png",
+    image: assetPath("/images/hero/hero-vision.png"),
     icon: Sparkles,
     tone: "orange",
   },
@@ -103,7 +104,7 @@ const services: ServiceItem[] = [
     description:
       "Specialized support services that help organizations improve efficiency, capability and execution quality.",
     href: "/services/shared-services",
-    image: "/images/hero/hero-operations.png",
+    image: assetPath("/images/hero/hero-operations.png"),
     icon: BriefcaseBusiness,
     tone: "green",
   },

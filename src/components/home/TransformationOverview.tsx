@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { assetPath } from "@/lib/assetPath";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,7 +17,7 @@ const cards = [
     title: "Strategic Direction",
     description:
       "Turning critical business challenges into clear strategic priorities.",
-    image: "/images/hero/hero-strategy.png",
+    image: assetPath("/images/hero/hero-strategy.png"),
     tone: "green",
   },
   {
@@ -25,7 +26,7 @@ const cards = [
     title: "People & Leadership",
     description:
       "Building leadership capability and stronger organizations.",
-    image: "/images/hero/hero-vision.png",
+    image: assetPath("/images/hero/hero-vision.png"),
     tone: "orange",
   },
   {
@@ -34,7 +35,7 @@ const cards = [
     title: "Operational Excellence",
     description:
       "Transforming manufacturing and supply-chain performance.",
-    image: "/images/hero/hero-operations.png",
+    image: assetPath("/images/hero/hero-operations.png"),
     tone: "green",
   },
 ] as const;

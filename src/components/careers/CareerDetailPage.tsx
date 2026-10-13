@@ -14,6 +14,7 @@ import {
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { assetPath } from "@/lib/assetPath";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -24,11 +25,11 @@ export type CareerPageType =
   | "experienced-professionals";
 
 const lifeImages = [
-  "/images/work-with-us/life-at-zunoks-01.png",
-  "/images/work-with-us/life-at-zunoks-02.png",
-  "/images/work-with-us/life-at-zunoks-03.png",
-  "/images/work-with-us/life-at-zunoks-04.png",
-  "/images/work-with-us/life-at-zunoks-05.png",
+  assetPath("/images/work-with-us/life-at-zunoks-01.png"),
+  assetPath("/images/work-with-us/life-at-zunoks-02.png"),
+  assetPath("/images/work-with-us/life-at-zunoks-03.png"),
+  assetPath("/images/work-with-us/life-at-zunoks-04.png"),
+  assetPath("/images/work-with-us/life-at-zunoks-05.png"),
 ];
 
 const pageData = {

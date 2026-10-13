@@ -5,28 +5,29 @@ import { ArrowRight, Mail } from "lucide-react";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { assetPath } from "@/lib/assetPath";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const gallery = [
   {
-    src: "/images/work-with-us/life-at-zunoks-01.png",
+    src: assetPath("/images/work-with-us/life-at-zunoks-01.png"),
     alt: "ZUNOKS colleagues celebrating together",
   },
   {
-    src: "/images/work-with-us/life-at-zunoks-02.png",
+    src: assetPath("/images/work-with-us/life-at-zunoks-02.png"),
     alt: "ZUNOKS colleagues greeting one another",
   },
   {
-    src: "/images/work-with-us/life-at-zunoks-03.png",
+    src: assetPath("/images/work-with-us/life-at-zunoks-03.png"),
     alt: "ZUNOKS colleagues sharing a conversation",
   },
   {
-    src: "/images/work-with-us/life-at-zunoks-04.png",
+    src: assetPath("/images/work-with-us/life-at-zunoks-04.png"),
     alt: "ZUNOKS team gathered in the office",
   },
   {
-    src: "/images/work-with-us/life-at-zunoks-05.png",
+    src: assetPath("/images/work-with-us/life-at-zunoks-05.png"),
     alt: "ZUNOKS team enjoying a meal together",
   },
 ] as const;
@@ -186,7 +187,7 @@ export default function WorkWithUsExperience() {
               className="relative min-h-full overflow-hidden rounded-bl-[5rem] sm:rounded-bl-[9rem] lg:rounded-bl-[14rem]"
             >
               <Image
-                src="/images/careers/work-with-us-hero.png"
+                src={assetPath("/images/careers/work-with-us-hero.png")}
                 alt="Three professionals having a conversation in a bright office"
                 fill
                 priority

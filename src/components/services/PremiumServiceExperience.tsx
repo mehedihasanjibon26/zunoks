@@ -28,6 +28,7 @@ import {
 } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { assetPath } from "@/lib/assetPath";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -78,7 +79,7 @@ const serviceContent = {
     email: "zunoks.consulting@zunoks.com",
     phone: "+880-9678-224-224",
     sourceUrl: "https://www.zunoks.com/services/human-resource/",
-    image: "/images/hero/hero-vision.png",
+    image: assetPath("/images/hero/hero-vision.png"),
   },
   "gamified-recruitment": {
     eyebrow: "Gamified Recruitment",
@@ -94,7 +95,7 @@ const serviceContent = {
     email: "zunoks.consulting@zunoks.com",
     phone: "+880-9678-224-224",
     sourceUrl: "https://www.zunoks.com/services/gamified-recruitment/",
-    image: "/images/hero/hero-strategy.png",
+    image: assetPath("/images/hero/hero-strategy.png"),
   },
   "manufacturing-supply-chain": {
     eyebrow: "Manufacturing, Supply Chain",
@@ -119,7 +120,7 @@ const serviceContent = {
     email: "zunoks.consulting@zunoks.com",
     phone: "+880-9678-224-224",
     sourceUrl: "https://www.zunoks.com/services/operations/",
-    image: "/images/hero/hero-operations.png",
+    image: assetPath("/images/hero/hero-operations.png"),
   },
   "executive-search": {
     eyebrow: "Executive Search",
@@ -140,7 +141,7 @@ const serviceContent = {
     email: "recruitment@zunoks.com",
     sourceUrl:
       "https://www.zunoks.com/services/executive-search-workforce-solutions/",
-    image: "/images/hero/hero-strategy.png",
+    image: assetPath("/images/hero/hero-strategy.png"),
   },
   "executive-coaching": {
     eyebrow: "Executive Coaching",
@@ -156,7 +157,7 @@ const serviceContent = {
     email: "zunoks.consulting@zunoks.com",
     phone: "+880-9678-224-224",
     sourceUrl: "https://www.zunoks.com/services/executive-coaching/",
-    image: "/images/hero/hero-vision.png",
+    image: assetPath("/images/hero/hero-vision.png"),
   },
   "shared-services": {
     eyebrow: "Shared Services",
@@ -177,7 +178,7 @@ const serviceContent = {
     email: "zunoks.consulting@zunoks.com",
     phone: "+880-9678-224-224",
     sourceUrl: "https://www.zunoks.com/services/shared-services/",
-    image: "/images/hero/hero-operations.png",
+    image: assetPath("/images/hero/hero-operations.png"),
   },
 } satisfies Record<PremiumServiceType, ServiceContent>;
 

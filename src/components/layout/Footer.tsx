@@ -7,6 +7,7 @@ import {
   Mail,
   Phone,
 } from "lucide-react";
+import { assetPath } from "@/lib/assetPath";
 
 const quickLinks = [
   { label: "About Us", href: "/about" },
@@ -104,7 +105,7 @@ export default function Footer() {
                 {/* EARTH */}
                 <div className="absolute bottom-[4%] -right-[17%] h-[150%] w-[132%] rotate-[-11deg]">
                   <Image
-                    src="/images/footer/earth-horizon.png"
+                    src={assetPath("/images/footer/earth-horizon.png")}
                     alt="Earth horizon"
                     fill
                     sizes="45vw"
@@ -140,7 +141,7 @@ export default function Footer() {
                 className="inline-flex"
               >
                 <Image
-                  src="/images/logo/zunoks-logo.png"
+                  src={assetPath("/images/logo/zunoks-logo.png")}
                   alt="ZUNOKS — Inspire to Innovate"
                   width={777}
                   height={249}

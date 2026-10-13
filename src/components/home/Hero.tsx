@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import { assetPath } from "@/lib/assetPath";
 
 const hero = {
   eyebrow: "ZUNOKS",
@@ -12,7 +13,7 @@ const hero = {
   accent: "to innovate",
   href: "/about",
   cta: "Discover ZUNOKS",
-  poster: "/images/hero/hero-strategy.png",
+  poster: assetPath("/images/hero/hero-strategy.png"),
   description:
     "ZUNOKS brings innovative solutions to critical business challenges and maximizes value for its partners.",
 } as const;
@@ -113,7 +114,10 @@ export default function Hero() {
         aria-hidden="true"
         className="absolute inset-0 h-full w-full object-cover object-center"
       >
-        <source src="/videos/home/homepage-hero.mp4" type="video/mp4" />
+        <source
+          src={assetPath("/videos/home/homepage-hero.mp4")}
+          type="video/mp4"
+        />
       </video>
 
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_34%,rgba(0,0,0,0.22)_100%),linear-gradient(to_top,rgba(0,0,0,0.74),transparent_40%),linear-gradient(to_right,rgba(0,0,0,0.92),rgba(0,0,0,0.54)_48%,rgba(0,0,0,0.08))]" />

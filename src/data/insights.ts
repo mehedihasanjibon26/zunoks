@@ -1,3 +1,5 @@
+import { assetPath } from "@/lib/assetPath";
+
 export type Insight = {
   slug: string;
   title: string;
@@ -19,7 +21,7 @@ export const insights: Insight[] = [
     excerpt: "A ZUNOKS demo topic on the questions leaders can ask to create direction during uncertainty.",
     date: "2026-09-02",
     author: "ZUNOKS Editorial (demo)",
-    image: "/images/insights/leadership-placeholder.webp",
+    image: assetPath("/images/insights/leadership-placeholder.webp"),
     isDummy: true,
   },
   {
@@ -29,7 +31,7 @@ export const insights: Insight[] = [
     excerpt: "An illustrative exploration of ownership, operating rhythms and communication during change.",
     date: "2026-09-08",
     author: "ZUNOKS Editorial (demo)",
-    image: "/images/insights/transformation-placeholder.webp",
+    image: assetPath("/images/insights/transformation-placeholder.webp"),
     isDummy: true,
   },
   {
@@ -39,7 +41,7 @@ export const insights: Insight[] = [
     excerpt: "A demo discussion of aligning roles, performance conversations and development with organizational needs.",
     date: "2026-09-14",
     author: "ZUNOKS Editorial (demo)",
-    image: "/images/insights/hr-placeholder.webp",
+    image: assetPath("/images/insights/hr-placeholder.webp"),
     isDummy: true,
   },
   {
@@ -49,7 +51,7 @@ export const insights: Insight[] = [
     excerpt: "A ZUNOKS demo topic on cross-functional planning and the practical questions behind S&OP.",
     date: "2026-09-20",
     author: "ZUNOKS Editorial (demo)",
-    image: "/images/insights/supply-chain-placeholder.webp",
+    image: assetPath("/images/insights/supply-chain-placeholder.webp"),
     isDummy: true,
   },
   {
@@ -59,7 +61,7 @@ export const insights: Insight[] = [
     excerpt: "An illustrative look at defining leadership requirements before assessing potential candidates.",
     date: "2026-09-26",
     author: "ZUNOKS Editorial (demo)",
-    image: "/images/insights/search-placeholder.webp",
+    image: assetPath("/images/insights/search-placeholder.webp"),
     isDummy: true,
   },
   {
@@ -69,7 +71,7 @@ export const insights: Insight[] = [
     excerpt: "A demo exploration of candidate experience, game-based assessment and the continuing role of human judgment.",
     date: "2026-10-02",
     author: "ZUNOKS Editorial (demo)",
-    image: "/images/insights/talent-placeholder.webp",
+    image: assetPath("/images/insights/talent-placeholder.webp"),
     isDummy: true,
   },
 ];

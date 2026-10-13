@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { assetPath } from "@/lib/assetPath";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -252,7 +253,7 @@ export default function StrategicInterventionsExperience() {
         >
           <div className="absolute inset-0">
             <Image
-              src="/images/hero/hero-strategy.png"
+              src={assetPath("/images/hero/hero-strategy.png")}
               alt="Strategic planning session"
               fill
               priority

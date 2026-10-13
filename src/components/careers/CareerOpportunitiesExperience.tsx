@@ -13,10 +13,13 @@ import {
 } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { assetPath } from "@/lib/assetPath";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const officeImage = "/images/careers/career-opportunities-office.png";
+const officeImage = assetPath(
+  "/images/careers/career-opportunities-office.png",
+);
 
 const opportunityPoints = [
   {

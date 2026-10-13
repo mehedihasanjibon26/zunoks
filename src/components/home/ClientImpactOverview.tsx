@@ -5,6 +5,7 @@ import { useEffect, useRef } from "react";
 import { ArrowUpRight, ShieldCheck } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { assetPath } from "@/lib/assetPath";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -283,7 +284,7 @@ export default function ClientImpactOverview() {
               preload="metadata"
             >
               <source
-                src="/videos/client-impact/client-impact-bg.mp4"
+                src={assetPath("/videos/client-impact/client-impact-bg.mp4")}
                 type="video/mp4"
               />
             </video>

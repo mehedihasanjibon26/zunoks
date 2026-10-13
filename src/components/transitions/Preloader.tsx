@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
+import { assetPath } from "@/lib/assetPath";
 
 type PreloaderProps = {
   onComplete?: () => void;
@@ -134,7 +135,7 @@ export default function Preloader({
               className="flex w-[clamp(12.5rem,32vw,16.25rem)] justify-center"
             >
               <Image
-                src="/images/logo/zunoks-logo.png"
+                src={assetPath("/images/logo/zunoks-logo.png")}
                 alt="ZUNOKS — Inspire to Innovate"
                 width={777}
                 height={249}

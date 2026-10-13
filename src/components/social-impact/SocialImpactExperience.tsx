@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { assetPath } from "@/lib/assetPath";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -20,21 +21,21 @@ const commitments = [
     description:
       "Contributing responsibly to the communities and society around us means acting with integrity, remaining attentive to wider social needs and considering how professional decisions can support positive, lasting progress.",
     icon: HeartHandshake,
-    image: "/images/work-with-us/life-at-zunoks-03.png",
+    image: assetPath("/images/work-with-us/life-at-zunoks-03.png"),
   },
   {
     title: "Sustainable Thinking",
     description:
       "Encouraging responsible, sustainable and long-term business practices helps organizations balance performance with resilience, thoughtful use of resources and consideration for the impact their decisions create over time.",
     icon: Leaf,
-    image: "/images/hero/hero-operations.png",
+    image: assetPath("/images/hero/hero-operations.png"),
   },
   {
     title: "People & Development",
     description:
       "Supporting professional growth, continuous learning and meaningful opportunities helps people strengthen their confidence and capability while contributing to more resilient organizations and sustainable long-term development.",
     icon: UsersRound,
-    image: "/images/work-with-us/life-at-zunoks-04.png",
+    image: assetPath("/images/work-with-us/life-at-zunoks-04.png"),
   },
 ] as const;
 
@@ -110,7 +111,10 @@ export default function SocialImpactExperience() {
             tabIndex={-1}
             className="pointer-events-none absolute inset-0 -z-30 h-full w-full object-cover"
           >
-            <source src="/videos/csr/csr-hero.mp4" type="video/mp4" />
+            <source
+              src={assetPath("/videos/csr/csr-hero.mp4")}
+              type="video/mp4"
+            />
           </video>
           <div className="pointer-events-none absolute inset-0 -z-20 bg-[linear-gradient(180deg,rgba(0,0,0,0.38)_0%,rgba(0,0,0,0.28)_46%,rgba(0,0,0,0.46)_100%)]" />
           <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:64px_64px]" />

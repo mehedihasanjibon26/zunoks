@@ -19,11 +19,12 @@ import {
 } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { assetPath } from "@/lib/assetPath";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const heroImage = "/images/careers/young-professionals-hero.png";
-const teamImage = "/images/careers/young-professionals-team.png";
+const heroImage = assetPath("/images/careers/young-professionals-hero.png");
+const teamImage = assetPath("/images/careers/young-professionals-team.png");
 
 const growthAreas = [
   {

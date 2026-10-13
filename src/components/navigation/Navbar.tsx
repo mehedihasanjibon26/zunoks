@@ -14,6 +14,7 @@ import {
 import gsap from "gsap";
 
 import { servicesNavigation } from "@/data/global";
+import { assetPath } from "@/lib/assetPath";
 
 type MenuKey =
   | "about"
@@ -935,7 +936,7 @@ export default function Navbar() {
             aria-label="ZUNOKS Home"
           >
             <Image
-              src="/images/logo/zunoks-logo.png"
+              src={assetPath("/images/logo/zunoks-logo.png")}
               alt="ZUNOKS — Inspire to Innovate"
               width={777}
               height={249}
@@ -943,8 +944,8 @@ export default function Navbar() {
               sizes="(max-width: 1024px) 125px, 145px"
               className={`h-auto transition-all duration-500 ${
                 scrolled
-                  ? "w-[112px] lg:w-[118px]"
-                  : "w-[122px] lg:w-[140px]"
+                  ? "!w-[112px] lg:!w-[118px]"
+                  : "!w-[122px] lg:!w-[140px]"
               }`}
             />
           </Link>

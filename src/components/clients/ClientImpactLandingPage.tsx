@@ -13,6 +13,7 @@ import {
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { assetPath } from "@/lib/assetPath";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -172,11 +173,11 @@ export default function ClientImpactLandingPage() {
           muted
           playsInline
           preload="metadata"
-          poster="/images/careers/career-opportunities-office.png"
+          poster={assetPath("/images/careers/career-opportunities-office.png")}
           className="absolute inset-0 -z-30 h-full w-full object-cover"
         >
           <source
-            src="/videos/client-impact/client-impact-bg.mp4"
+            src={assetPath("/videos/client-impact/client-impact-bg.mp4")}
             type="video/mp4"
           />
         </video>
@@ -296,7 +297,7 @@ export default function ClientImpactLandingPage() {
                 >
                   {item.image ? (
                     <Image
-                      src="/images/careers/career-opportunities-office.png"
+                      src={assetPath("/images/careers/career-opportunities-office.png")}
                       alt=""
                       fill
                       sizes="(max-width: 767px) 100vw, 34vw"
@@ -353,7 +354,7 @@ export default function ClientImpactLandingPage() {
             <div className="pointer-events-none absolute -bottom-48 -left-24 h-[26rem] w-[26rem] rounded-full bg-[#e9f3e8]" />
             <div className="pointer-events-none absolute -bottom-24 -right-20 h-[19rem] w-[19rem] overflow-hidden rounded-full border-[10px] border-white">
               <Image
-                src="/images/careers/career-opportunities-office.png"
+                src={assetPath("/images/careers/career-opportunities-office.png")}
                 alt="Executive office overlooking a city"
                 fill
                 sizes="320px"

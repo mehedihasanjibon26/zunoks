@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { assetPath } from "@/lib/assetPath";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -421,7 +422,7 @@ export default function WorkWithUsOverview() {
                 className="absolute inset-[-4%] will-change-transform"
               >
                 <Image
-                  src="/images/hero/hero-vision.png"
+                  src={assetPath("/images/hero/hero-vision.png")}
                   alt="ZUNOKS work culture"
                   fill
                   sizes="(max-width: 1024px) 100vw, 58vw"

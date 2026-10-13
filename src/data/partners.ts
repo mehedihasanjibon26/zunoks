@@ -1,3 +1,5 @@
+import { assetPath } from "@/lib/assetPath";
+
 export type Partner = {
   slug: string;
   href: string;
@@ -29,7 +31,7 @@ export const partners: Partner[] = [
     achievements: ["Helped launch BATB's Battle of Minds employer-brand initiative.", "Contributed to leadership of BAT's global SAP programme.", "Led organizational change at Grameenphone."],
     organizations: ["British American Tobacco", "Grameenphone", "Telenor India"],
     experienceReferences: ["British American Tobacco: South Asia HR and global projects", "BAT Bangladesh: manufacturing and supply chain", "Grameenphone: organizational change", "Telenor India: divestiture team"],
-    image: "/images/founders/quazi-m-shahed.png",
+    image: assetPath("/images/founders/quazi-m-shahed.png"),
     isImagePlaceholder: false,
     accent: "green",
     sourceUrl: "https://www.zunoks.com/team-members/quazi-m-shahed/",
@@ -45,7 +47,7 @@ export const partners: Partner[] = [
     achievements: ["Directed HR integration for the Hello Axiata and Latelz merger in Cambodia.", "Led six workstreams in the Robi Axiata and Airtel Bangladesh merger.", "Led separation of tower and call-centre operations from core businesses."],
     organizations: ["Robi Axiata", "Axiata", "Hello Axiata", "Latelz"],
     experienceReferences: ["Robi Axiata: leadership and merger integration", "Hello Axiata and Latelz: HR merger integration"],
-    image: "/images/founders/matiul-i-nowshad.png",
+    image: assetPath("/images/founders/matiul-i-nowshad.png"),
     isImagePlaceholder: false,
     accent: "orange",
     sourceUrl: "https://www.zunoks.com/team-members/matiul-i-nowshad/",
@@ -61,7 +63,7 @@ export const partners: Partner[] = [
     achievements: ["Established new factories for BATB and Reckitt Benckiser.", "Led sourcing programmes across BAT Asia Pacific.", "Sponsored SAP implementation in BATB operations."],
     organizations: ["British American Tobacco", "Reckitt Benckiser"],
     experienceReferences: ["BAT Bangladesh: factory transformation", "BAT Asia Pacific: regional operations and sourcing", "BAT Sri Lanka: third-party logistics projects", "Reckitt Benckiser: greenfield manufacturing"],
-    image: "/images/founders/saifuddin-m-khaled.png",
+    image: assetPath("/images/founders/saifuddin-m-khaled.png"),
     isImagePlaceholder: false,
     accent: "green",
     sourceUrl: "https://www.zunoks.com/team-members/saifuddin-mohammad-khaled/",
@@ -78,7 +80,7 @@ export const partners: Partner[] = [
     achievements: ["Established BRAC's leadership academy and competency framework.", "Developed long-term people strategies for BRAC and Chevron.", "Led culture, leadership and talent transformation at BAT and Coats."],
     organizations: ["BRAC", "Chevron", "British American Tobacco", "Coats"],
     experienceReferences: ["BRAC: leadership development and people strategy", "Chevron: people strategy", "BAT and Coats: business transformation"],
-    image: "/images/founders/zulfikar-hyder.png",
+    image: assetPath("/images/founders/zulfikar-hyder.png"),
     isImagePlaceholder: false,
     accent: "orange",
     sourceUrl: "https://www.zunoks.com/team-members/zulfikar-hyder/",

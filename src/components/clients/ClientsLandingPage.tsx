@@ -22,6 +22,7 @@ import {
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { assetPath } from "@/lib/assetPath";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -234,7 +235,7 @@ export default function ClientsLandingPage() {
           className="relative min-h-[330px] overflow-hidden rounded-tl-[14rem] lg:min-h-full"
         >
           <Image
-            src="/images/careers/career-opportunities-office.png"
+            src={assetPath("/images/careers/career-opportunities-office.png")}
             alt="Contemporary executive office overlooking a city skyline"
             fill
             priority
@@ -325,7 +326,7 @@ export default function ClientsLandingPage() {
               className="relative min-h-[315px] overflow-hidden px-8 py-9 text-white md:px-12"
             >
               <Image
-                src="/images/careers/career-opportunities-office.png"
+                src={assetPath("/images/careers/career-opportunities-office.png")}
                 alt="Executive office representing trusted client relationships"
                 fill
                 sizes="(max-width: 1023px) 100vw, 58vw"
@@ -390,7 +391,7 @@ export default function ClientsLandingPage() {
             className="relative aspect-[1.75/1] overflow-hidden rounded-[1.45rem] rounded-br-[4.5rem]"
           >
             <Image
-              src="/images/careers/career-opportunities-office.png"
+              src={assetPath("/images/careers/career-opportunities-office.png")}
               alt="City skyline representing leading organisations"
               fill
               sizes="(max-width: 1023px) 100vw, 30vw"
