@@ -40,7 +40,14 @@ export default function AboutServices() {
     const context = gsap.context(() => {
       media.add("(prefers-reduced-motion: no-preference)", () => {
         gsap
-          .timeline({ defaults: { ease: "power4.out" } })
+          .timeline({
+            defaults: { ease: "power4.out" },
+            scrollTrigger: {
+              trigger: section,
+              start: "top 80%",
+              once: true,
+            },
+          })
           .fromTo(
             "[data-services-eyebrow]",
             { opacity: 0, y: 14 },
@@ -110,8 +117,9 @@ export default function AboutServices() {
 
   return (
     <section
+      id="services"
       ref={sectionRef}
-      className="relative overflow-hidden bg-[linear-gradient(180deg,#f7f7f2_0%,#eef3e9_54%,#f6f2df_100%)] pb-[clamp(2.75rem,4.5vw,4.5rem)] pt-[7.25rem] text-[#101510] md:pt-[7.75rem]"
+      className="relative scroll-mt-[112px] overflow-hidden bg-[linear-gradient(180deg,#f7f7f2_0%,#eef3e9_54%,#f6f2df_100%)] pb-[clamp(2.75rem,4.5vw,4.5rem)] pt-[7.25rem] text-[#101510] md:pt-[7.75rem]"
     >
       <div className="mx-auto w-full max-w-[var(--container-wide)] px-[var(--page-gutter)]">
         <div className="relative isolate overflow-hidden rounded-[2.25rem] bg-[#08140d] px-6 py-8 text-white shadow-[0_30px_95px_-40px_rgba(18,79,32,0.7)] md:px-10 lg:px-12">

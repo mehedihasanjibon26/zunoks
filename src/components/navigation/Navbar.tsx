@@ -44,28 +44,28 @@ const megaMenus: Record<MenuKey, MegaMenuGroup> = {
     items: [
       {
         label: "About ZUNOKS",
-        href: "/about",
+        href: "/about#about-zunoks",
         description: "Who we are and how we create value.",
       },
       {
         label: "Our Story",
-        href: "/about/our-story",
+        href: "/about#our-story",
         description: "Yesterday, today and tomorrow.",
       },
       {
         label: "Vision, Mission & Values",
-        href: "/about/vision-mission-values",
+        href: "/about#vision-mission-values",
         description: "The principles that guide the firm.",
       },
       {
         label: "Founders",
-        href: "/about/founders",
+        href: "/about#founders",
         description:
           "Meet the senior professionals behind ZUNOKS.",
       },
       {
         label: "Services",
-        href: "/about/services",
+        href: "/about#services",
         description:
           "See how ZUNOKS helps organizations move forward.",
       },
@@ -171,35 +171,35 @@ const searchIndex: SearchEntry[] = [
   },
   {
     title: "About ZUNOKS",
-    href: "/about",
+    href: "/about#about-zunoks",
     category: "About Us",
     description: "Learn about ZUNOKS and its consulting approach.",
     keywords: "about company firm experience",
   },
   {
     title: "Our Story",
-    href: "/about/our-story",
+    href: "/about#our-story",
     category: "About Us",
     description: "Discover where ZUNOKS began and where it is heading.",
     keywords: "history yesterday today tomorrow founders",
   },
   {
     title: "Vision, Mission & Values",
-    href: "/about/vision-mission-values",
+    href: "/about#vision-mission-values",
     category: "About Us",
     description: "The principles and ambitions that guide ZUNOKS.",
     keywords: "vision mission values purpose integrity",
   },
   {
     title: "Founders",
-    href: "/about/founders",
+    href: "/about#founders",
     category: "About Us",
     description: "Meet the senior professionals behind ZUNOKS.",
     keywords: "leadership people team partners founders",
   },
   {
     title: "Services Overview",
-    href: "/about/services",
+    href: "/about#services",
     category: "About Us",
     description: "Explore ZUNOKS capabilities across seven service areas.",
     keywords: "services expertise capabilities consulting",
@@ -320,14 +320,14 @@ const searchIndex: SearchEntry[] = [
 
 const mobileNavigation = [
   ["Home", "/"],
-  ["About Us", "/about"],
-  ["Our Story", "/about/our-story"],
+  ["About Us", "/about#about-zunoks"],
+  ["Our Story", "/about#our-story"],
   [
     "Vision, Mission & Values",
-    "/about/vision-mission-values",
+    "/about#vision-mission-values",
   ],
-  ["Founders", "/about/founders"],
-  ["Services", "/about/services"],
+  ["Founders", "/about#founders"],
+  ["Services", "/about#services"],
   ["Our Services", "/services"],
   ["Our Clients", "/clients"],
   ["CSR", "/social-impact"],
@@ -1260,11 +1260,19 @@ export default function Navbar() {
                             </span>
 
                             <div>
-                              <p className="text-[0.95rem] font-medium leading-tight">
-                                {
-                                  item.label
-                                }
-                              </p>
+                              <div className="flex items-center gap-2">
+                                <p className="text-[0.95rem] font-medium leading-tight">
+                                  {
+                                    item.label
+                                  }
+                                </p>
+
+                                {item.href === "/careers/career-opportunities" && (
+                                  <span className="whitespace-nowrap rounded-full bg-[var(--z-green)]/10 px-2.5 py-1 text-[0.58rem] font-medium leading-none text-[var(--z-green)]">
+                                    We&apos;re hiring!
+                                  </span>
+                                )}
+                              </div>
 
                               {item.description && (
                                 <p className="mt-2 max-w-[24rem] text-xs leading-5 text-black/45">

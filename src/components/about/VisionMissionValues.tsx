@@ -141,7 +141,7 @@ export default function VisionMissionValues() {
     <section
       id="vision-mission-values"
       ref={sectionRef}
-      className="relative overflow-hidden bg-[#eef0e9] pb-[clamp(2.75rem,4.5vw,4.5rem)] pt-[7.25rem] text-black md:pt-[7.75rem]"
+      className="relative scroll-mt-[112px] overflow-hidden bg-[#eef0e9] pb-[clamp(2.75rem,4.5vw,4.5rem)] pt-[7.25rem] text-black md:pt-[7.75rem]"
     >
       {/* BACKGROUND */}
       <div className="pointer-events-none absolute inset-0">

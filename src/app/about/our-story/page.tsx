@@ -1,9 +1,5 @@
-import AboutStory from "@/components/about/AboutStory";
+import AboutSectionForward from "@/components/about/AboutSectionForward";
 
 export default function OurStoryPage() {
-  return (
-    <main className="overflow-x-hidden">
-      <AboutStory />
-    </main>
-  );
+  return <AboutSectionForward hash="our-story" />;
 }

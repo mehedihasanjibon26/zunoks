@@ -96,7 +96,7 @@ export default function AboutFounders() {
     <section
       id="founders"
       ref={sectionRef}
-      className="relative overflow-hidden bg-[#f3f4ef] py-[clamp(2.75rem,4.5vw,4.5rem)] text-black"
+      className="relative scroll-mt-[112px] overflow-hidden bg-[#f3f4ef] py-[clamp(2.75rem,4.5vw,4.5rem)] text-black"
     >
       {/* BACKGROUND */}
       <div className="pointer-events-none absolute inset-0">

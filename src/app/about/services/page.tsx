@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import AboutServices from "@/components/about/AboutServices";
+import AboutSectionForward from "@/components/about/AboutSectionForward";
 
 export const metadata: Metadata = {
   title: "Services",
@@ -9,9 +9,5 @@ export const metadata: Metadata = {
 };
 
 export default function AboutServicesPage() {
-  return (
-    <main className="overflow-x-hidden">
-      <AboutServices />
-    </main>
-  );
+  return <AboutSectionForward hash="services" />;
 }

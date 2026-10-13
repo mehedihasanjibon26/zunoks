@@ -437,8 +437,9 @@ export default function AboutIntro() {
 
   return (
     <section
+      id="about-zunoks"
       ref={sectionRef}
-      className="relative overflow-hidden bg-[#f1f2ed] pb-[clamp(2.75rem,4.5vw,4.5rem)] pt-[7.25rem] text-black md:pt-[7.75rem]"
+      className="relative scroll-mt-[112px] overflow-hidden bg-[#f1f2ed] pb-[clamp(2.75rem,4.5vw,4.5rem)] pt-[7.25rem] text-black md:pt-[7.75rem]"
     >
       <div className="relative mx-auto w-full max-w-[var(--container-wide)] px-[var(--page-gutter)]">
         {/* ================================================= */}
@@ -1098,7 +1099,7 @@ export default function AboutIntro() {
           </div>
 
           <a
-            href="/about/our-story"
+            href="#our-story"
             className="group inline-flex w-fit items-center gap-4 rounded-full border border-black/[0.08] bg-white/[0.42] p-1.5 pl-5 text-sm font-medium text-black/58 shadow-[0_10px_30px_rgba(0,0,0,0.04)] backdrop-blur-xl transition-all duration-500 hover:border-[var(--z-green)]/20 hover:bg-white/70 hover:text-[var(--z-green)]"
           >
             <span>Continue to our story</span>

@@ -167,7 +167,7 @@ export default function AboutStory() {
     <section
       id="our-story"
       ref={sectionRef}
-      className="relative overflow-hidden bg-[#0a0d0a] py-[clamp(2.75rem,4.5vw,4.5rem)] text-white"
+      className="relative scroll-mt-[112px] overflow-hidden bg-[#0a0d0a] py-[clamp(2.75rem,4.5vw,4.5rem)] text-white"
     >
       {/* BACKGROUND */}
       <div className="pointer-events-none absolute inset-0">

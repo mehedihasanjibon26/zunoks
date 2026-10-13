@@ -31,9 +31,29 @@ export default function SmoothScroll({
     gsap.ticker.add(update);
     gsap.ticker.lagSmoothing(0);
 
+    let hashFrame = 0;
+
+    const scrollToHash = () => {
+      window.cancelAnimationFrame(hashFrame);
+      hashFrame = window.requestAnimationFrame(() => {
+        const id = decodeURIComponent(window.location.hash.slice(1));
+        const target = id ? document.getElementById(id) : null;
+
+        if (target) {
+          lenis.scrollTo(target);
+        }
+      });
+    };
+
+    window.addEventListener("hashchange", scrollToHash);
+    window.addEventListener("zunoks:about-hash-ready", scrollToHash);
+
     ScrollTrigger.refresh();
 
     return () => {
+      window.cancelAnimationFrame(hashFrame);
+      window.removeEventListener("hashchange", scrollToHash);
+      window.removeEventListener("zunoks:about-hash-ready", scrollToHash);
       gsap.ticker.remove(update);
       lenis.destroy();
     };

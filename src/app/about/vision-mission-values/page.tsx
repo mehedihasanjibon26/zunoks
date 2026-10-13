@@ -1,9 +1,5 @@
-import VisionMissionValues from "@/components/about/VisionMissionValues";
+import AboutSectionForward from "@/components/about/AboutSectionForward";
 
 export default function VisionMissionValuesPage() {
-  return (
-    <main className="overflow-x-hidden">
-      <VisionMissionValues />
-    </main>
-  );
+  return <AboutSectionForward hash="vision-mission-values" />;
 }

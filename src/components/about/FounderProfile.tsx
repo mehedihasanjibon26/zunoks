@@ -219,7 +219,7 @@ function Breadcrumb({ founder }: { founder: Partner }) {
           Home
         </Link>
         <span>›</span>
-        <Link className="transition-colors hover:text-white" href="/about/founders">
+        <Link className="transition-colors hover:text-white" href="/about#founders">
           Team Members
         </Link>
         <span>›</span>
@@ -249,7 +249,7 @@ function CurvedProfile({
               fill
               priority
               sizes="(min-width: 1024px) 47vw, 100vw"
-              className="object-cover object-top"
+              className="object-contain object-center"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-black/[0.05] via-transparent to-[#f7f5ef]/10" />
           </div>
@@ -381,7 +381,7 @@ function EditorialProfile({
               fill
               priority
               sizes="(min-width: 1024px) 38vw, 90vw"
-              className="object-cover object-top"
+              className="object-contain object-center"
             />
           </div>
           <div>
@@ -463,7 +463,7 @@ export default function FounderProfile({ founder }: { founder: Partner }) {
       <div className="bg-white py-5">
         <div className="mx-auto max-w-[var(--container-wide)] px-[var(--page-gutter)]">
           <Link
-            href="/about/founders"
+            href="/about#founders"
             className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.16em] text-[#315b47] transition-colors hover:text-black"
           >
             <ArrowLeft size={14} />
