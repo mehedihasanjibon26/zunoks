@@ -1,9 +1,9 @@
-import CareerDetailPage from "@/components/careers/CareerDetailPage";
+import WorkWithUsExperience from "@/components/careers/WorkWithUsExperience";
 
 export default function WorkWithUsPage() {
   return (
     <main className="overflow-x-hidden">
-      <CareerDetailPage type="work-with-us" />
+      <WorkWithUsExperience />
     </main>
   );
 }

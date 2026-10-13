@@ -1,370 +1,295 @@
 "use client";
 
-import Link from "next/link";
-import {
-  ArrowUpRight,
-  BriefcaseBusiness,
-  GraduationCap,
-  Sparkles,
-  UserRoundSearch,
-  UsersRound,
-} from "lucide-react";
+import Image from "next/image";
+import { ArrowRight, Mail } from "lucide-react";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const careerPaths = [
+const gallery = [
   {
-    index: "01",
-    title: "Work With Us",
-    description: "Discover the ZUNOKS consulting environment.",
-    href: "/careers/work-with-us",
-    icon: UsersRound,
-    accent: "green",
+    src: "/images/work-with-us/life-at-zunoks-01.png",
+    alt: "ZUNOKS colleagues celebrating together",
   },
   {
-    index: "02",
-    title: "Career Opportunities",
-    description: "Explore current and future opportunities.",
-    href: "/careers/career-opportunities",
-    icon: BriefcaseBusiness,
-    accent: "yellow",
+    src: "/images/work-with-us/life-at-zunoks-02.png",
+    alt: "ZUNOKS colleagues greeting one another",
   },
   {
-    index: "03",
-    title: "Young Professionals",
-    description: "Start and develop a career in consulting.",
-    href: "/careers/young-professionals",
-    icon: GraduationCap,
-    accent: "green",
+    src: "/images/work-with-us/life-at-zunoks-03.png",
+    alt: "ZUNOKS colleagues sharing a conversation",
   },
   {
-    index: "04",
-    title: "Experienced Professionals",
-    description: "Bring experience and expertise to wider challenges.",
-    href: "/careers/experienced-professionals",
-    icon: UserRoundSearch,
-    accent: "yellow",
+    src: "/images/work-with-us/life-at-zunoks-04.png",
+    alt: "ZUNOKS team gathered in the office",
+  },
+  {
+    src: "/images/work-with-us/life-at-zunoks-05.png",
+    alt: "ZUNOKS team enjoying a meal together",
   },
 ] as const;
 
 export default function WorkWithUsExperience() {
-  const sectionRef = useRef<HTMLElement>(null);
+  const pageRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const section = sectionRef.current;
+    const page = pageRef.current;
+    if (!page) return;
 
-    if (!section) return;
+    const media = gsap.matchMedia();
 
-    const ctx = gsap.context(() => {
-      const intro = gsap.timeline({
-        defaults: {
-          ease: "power4.out",
-        },
-      });
+    const context = gsap.context(() => {
+      media.add("(prefers-reduced-motion: no-preference)", () => {
+        gsap
+          .timeline({ defaults: { ease: "power3.out" } })
+          .fromTo(
+            "[data-hero-copy]",
+            { opacity: 0, y: 18, filter: "blur(5px)" },
+            {
+              opacity: 1,
+              y: 0,
+              filter: "blur(0px)",
+              duration: 0.8,
+              stagger: 0.07,
+            },
+          )
+          .fromTo(
+            "[data-hero-photo]",
+            { opacity: 0, scale: 1.08 },
+            { opacity: 1, scale: 1, duration: 1.05 },
+            0.08,
+          )
+          .fromTo(
+            "[data-apply]",
+            { opacity: 0, y: 12 },
+            { opacity: 1, y: 0, duration: 0.65 },
+            0.45,
+          );
 
-      intro
-        .fromTo(
-          "[data-careers-eyebrow]",
-          {
-            opacity: 0,
-            y: 16,
-            filter: "blur(7px)",
+        gsap.to("[data-hero-photo] img", {
+          yPercent: 5,
+          ease: "none",
+          scrollTrigger: {
+            trigger: "[data-hero]",
+            start: "top top",
+            end: "bottom top",
+            scrub: 1,
           },
+        });
+
+        gsap.fromTo(
+          "[data-life-copy]",
+          { opacity: 0, y: 20, filter: "blur(5px)" },
           {
             opacity: 1,
             y: 0,
             filter: "blur(0px)",
             duration: 0.8,
-            delay: 0.1,
+            stagger: 0.08,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: "[data-life]",
+              start: "top 86%",
+              once: true,
+            },
           },
-        )
-        .fromTo(
-          "[data-careers-title-line]",
-          {
-            yPercent: 115,
-            rotateX: -18,
-            opacity: 0,
-          },
-          {
-            yPercent: 0,
-            rotateX: 0,
-            opacity: 1,
-            duration: 1.05,
-            stagger: 0.1,
-          },
-          "-=0.5",
-        )
-        .fromTo(
-          "[data-careers-copy]",
-          {
-            opacity: 0,
-            y: 20,
-          },
+        );
+
+        gsap.fromTo(
+          "[data-gallery-card]",
+          { opacity: 0, y: 22, scale: 0.985 },
           {
             opacity: 1,
             y: 0,
-            duration: 0.8,
+            scale: 1,
+            duration: 0.75,
+            stagger: 0.075,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: "[data-gallery]",
+              start: "top 84%",
+              once: true,
+            },
           },
-          "-=0.55",
         );
-
-      gsap.to("[data-careers-glow-a]", {
-        xPercent: 12,
-        yPercent: 8,
-        scale: 1.12,
-        duration: 9,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
       });
+    }, page);
 
-      gsap.to("[data-careers-glow-b]", {
-        xPercent: -10,
-        yPercent: -8,
-        scale: 1.14,
-        duration: 11,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-      });
-
-      gsap.fromTo(
-        "[data-careers-sheen]",
-        {
-          xPercent: -145,
-          opacity: 0,
-        },
-        {
-          xPercent: 175,
-          opacity: 0.32,
-          duration: 5.5,
-          repeat: -1,
-          repeatDelay: 2.5,
-          ease: "power1.inOut",
-        },
-      );
-
-      gsap.to("[data-careers-orbit]", {
-        rotation: 360,
-        duration: 32,
-        repeat: -1,
-        ease: "none",
-        transformOrigin: "50% 50%",
-      });
-
-      gsap.fromTo(
-        "[data-career-path]",
-        {
-          opacity: 0,
-          y: 28,
-          filter: "blur(7px)",
-        },
-        {
-          opacity: 1,
-          y: 0,
-          filter: "blur(0px)",
-          duration: 0.85,
-          stagger: 0.09,
-          ease: "power4.out",
-          scrollTrigger: {
-            trigger: "[data-career-path-grid]",
-            start: "top 82%",
-            once: true,
-          },
-        },
-      );
-    }, section);
-
-    return () => ctx.revert();
+    return () => {
+      media.revert();
+      context.revert();
+    };
   }, []);
 
   return (
     <section
-      ref={sectionRef}
-      className="relative min-h-screen overflow-hidden bg-[#f1f2ed] pb-[clamp(4rem,7vw,7rem)] pt-[7.7rem] text-black md:pt-[8.3rem]"
+      ref={pageRef}
+      className="relative overflow-hidden bg-[#f7f8f1] pb-[clamp(2.5rem,4vw,4rem)] pt-[6.25rem] text-[#101510] md:pt-[7rem]"
     >
-      <div className="mx-auto w-full max-w-[var(--container-wide)] px-[var(--page-gutter)]">
-        {/* HERO */}
-        <div className="relative flex min-h-[390px] items-center overflow-hidden rounded-[2.2rem] bg-[#e2b947] px-6 py-12 text-[#17160f] shadow-[0_30px_90px_rgba(126,94,16,0.18)] md:min-h-[420px] md:px-10 lg:px-14">
-          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(125deg,#f5df82_0%,#e9c759_38%,#dcae32_72%,#c9911f_100%)]" />
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute -left-28 top-24 h-72 w-72 rounded-full border border-[#e1be42]/20" />
+        <div className="absolute -right-28 top-[46%] h-80 w-80 rounded-full bg-[#dcefd4]/55 blur-2xl" />
+        <div className="absolute right-[-4rem] top-[56%] h-64 w-64 rounded-full border border-[var(--z-green)]/10" />
+      </div>
 
-          <div
-            data-careers-glow-a
-            className="pointer-events-none absolute -left-[13%] -top-[65%] h-[36rem] w-[36rem] rounded-full bg-[#fff7c7] opacity-55 blur-[105px]"
-          />
+      <div className="relative mx-auto w-full max-w-[var(--container-wide)] px-[var(--page-gutter)]">
+        <div
+          data-hero
+          className="relative isolate overflow-hidden rounded-[1.55rem] border border-[#d7e2cc] bg-[#eef5df] shadow-[0_22px_65px_-42px_rgba(34,75,39,0.35)]"
+        >
+          <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_12%_22%,rgba(255,255,255,0.94),transparent_34%),linear-gradient(105deg,#eff6e1_0%,#edf4dd_55%,#f9f5dc_100%)]" />
+          <div className="pointer-events-none absolute -left-24 -top-24 h-64 w-64 rounded-full border border-[#ddb92d]/25" />
+          <div className="pointer-events-none absolute left-[44%] top-[14%] h-2 w-2 rounded-full bg-[#efbd28] shadow-[0_0_18px_rgba(239,189,40,0.55)]" />
 
-          <div
-            data-careers-glow-b
-            className="pointer-events-none absolute -bottom-[70%] -right-[8%] h-[34rem] w-[34rem] rounded-full bg-[#9b6a09] opacity-25 blur-[115px]"
-          />
-
-          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(72,52,7,0.045)_1px,transparent_1px),linear-gradient(90deg,rgba(72,52,7,0.045)_1px,transparent_1px)] bg-[size:80px_80px]" />
-
-          <div
-            data-careers-sheen
-            className="pointer-events-none absolute -inset-y-[35%] left-[-18%] w-[32%] rotate-[16deg] bg-gradient-to-r from-transparent via-white/55 to-transparent blur-2xl"
-          />
-
-          <div
-            data-careers-orbit
-            className="pointer-events-none absolute -right-[4.5rem] top-1/2 h-[21rem] w-[21rem] -translate-y-1/2 rounded-full border border-[#65470b]/15"
-          >
-            <span className="absolute left-[12%] top-[9%] h-2.5 w-2.5 rounded-full bg-[var(--z-green)] shadow-[0_0_22px_rgba(49,155,66,0.42)]" />
-            <span className="absolute bottom-[13%] right-[7%] h-2 w-2 rounded-full bg-[#fff2ab] shadow-[0_0_18px_rgba(255,244,181,0.65)]" />
-          </div>
-
-          <div className="pointer-events-none absolute inset-x-[12%] top-0 h-px bg-gradient-to-r from-transparent via-white/70 to-transparent" />
-
-          <div className="relative z-10 mx-auto max-w-[1040px] text-center">
-            <div
-              data-careers-eyebrow
-              className="flex items-center justify-center gap-3"
-            >
-              <span className="h-[2px] w-8 bg-[#805a0c]" />
-
-              <span className="text-[0.61rem] font-semibold uppercase tracking-[0.22em] text-black/55">
+          <div className="grid min-h-[310px] grid-cols-[1.03fr_0.97fr] sm:min-h-[360px] lg:min-h-[430px]">
+            <div className="relative z-20 flex flex-col justify-center py-7 pl-5 pr-1 sm:py-10 sm:pl-9 md:pl-12 lg:pl-16">
+              <p
+                data-hero-copy
+                className="text-[0.47rem] font-semibold uppercase tracking-[0.18em] text-[var(--z-green)] sm:text-[0.58rem]"
+              >
                 Work With Us
-              </span>
+              </p>
 
-              <span className="h-[2px] w-8 bg-[var(--z-green)]" />
+              <h1 className="mt-2 max-w-[13ch] font-serif text-[clamp(1.32rem,4.5vw,4.65rem)] leading-[0.9] tracking-[-0.045em] sm:mt-3">
+                <span data-hero-copy className="block">
+                  We are always on the lookout for the best and the brightest
+                  talents, especially those who are looking to establish
+                  themselves as
+                </span>{" "}
+                <span data-hero-copy className="text-[var(--z-green)]">
+                  consulting professionals.
+                </span>
+              </h1>
+
+              <div
+                data-hero-copy
+                className="mt-3 max-w-[34rem] space-y-2 pr-2 text-[0.52rem] leading-[1.55] text-black/55 sm:mt-5 sm:text-[0.72rem] lg:text-[0.82rem]"
+              >
+                <p>
+                  ZUNOKS employs young and aspiring talents for full-time
+                  opportunities. We also offer contingent opportunities for
+                  professionals in career break, maternity leave etc. looking
+                  for part-time opportunities.
+                </p>
+                <p>
+                  Explore our services to get an idea of our areas of work, and
+                  see where you can add the most value that falls in line with
+                  your passion, strength and experience.
+                </p>
+              </div>
             </div>
 
-            <h1
-              data-careers-title
-              className="mt-5 text-[clamp(2.5rem,6vw,6.4rem)] font-medium leading-[0.88] tracking-[-0.072em]"
+            <div
+              data-hero-photo
+              className="relative min-h-full overflow-hidden rounded-bl-[5rem] sm:rounded-bl-[9rem] lg:rounded-bl-[14rem]"
             >
-              <span className="block overflow-hidden pb-[0.06em]">
-                <span
-                  data-careers-title-line
-                  className="block whitespace-nowrap"
-                >
-                  Find your place
-                </span>
-              </span>
-              <span className="block overflow-hidden pb-[0.08em]">
-                <span
-                  data-careers-title-line
-                  className="block whitespace-nowrap"
-                >
-                  at{" "}
-                  <span className="text-[#176d37]">
-                    ZUNOKS
-                  </span>
-                  <span className="text-[#a65311]">
-                    .
-                  </span>
-                </span>
-              </span>
-            </h1>
-
-            <p
-              data-careers-copy
-              className="mx-auto mt-6 max-w-[48rem] text-[clamp(1rem,1.3vw,1.16rem)] leading-8 text-black/58"
-            >
-              We are always on the lookout for the best and the
-              brightest talents, especially those who are looking
-              to establish themselves as consulting professionals.
-            </p>
+              <Image
+                src="/images/careers/work-with-us-hero.png"
+                alt="Three professionals having a conversation in a bright office"
+                fill
+                priority
+                sizes="(max-width: 767px) 50vw, 48vw"
+                className="scale-[1.1] object-cover object-[54%_center]"
+              />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#eef5df]/40 via-transparent to-transparent" />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/5 via-transparent to-white/10" />
+            </div>
           </div>
         </div>
 
-        {/* 4-WAY HUB */}
         <div
-          data-career-path-grid
-          className="relative mt-8 overflow-hidden rounded-[2.2rem] border border-white/70 bg-[linear-gradient(120deg,rgba(110,205,145,0.26),rgba(255,255,255,0.5),rgba(235,218,104,0.30))] p-4 shadow-[0_28px_80px_rgba(30,70,45,0.07)] backdrop-blur-[28px] md:p-6"
+          data-apply
+          className="relative z-30 mx-2 -mt-4 grid grid-cols-[auto_1fr_auto] items-center gap-2 rounded-[1.15rem] border border-white/90 bg-white/80 px-3 py-2.5 shadow-[0_18px_40px_-28px_rgba(37,75,40,0.4)] backdrop-blur-xl sm:mx-6 sm:gap-4 sm:px-5 sm:py-3.5 lg:mx-10"
         >
-          <div className="pointer-events-none absolute -left-20 top-[-7rem] h-80 w-80 rounded-full bg-[var(--z-green)] opacity-[0.12] blur-[100px]" />
-          <div className="pointer-events-none absolute -right-16 bottom-[-8rem] h-80 w-80 rounded-full bg-[#e5cb58] opacity-[0.17] blur-[95px]" />
+          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#e5f3df] text-[var(--z-green)] sm:h-10 sm:w-10">
+            <Mail size={14} strokeWidth={1.7} aria-hidden="true" />
+          </span>
 
-          <div className="relative mb-5 flex items-center justify-center gap-3">
-            <Sparkles
-              size={14}
-              strokeWidth={1.6}
-              className="text-[var(--z-green)]"
+          <p className="text-[0.48rem] leading-[1.45] text-black/54 sm:text-[0.68rem] lg:text-[0.76rem]">
+            Interested in joining ZUNOKS? Mail your updated CV along with a
+            Cover Letter to{" "}
+            <a
+              href="mailto:recruitment@zunoks.com?subject=Work%20with%20ZUNOKS"
+              className="font-semibold text-[var(--z-green)] transition-colors hover:text-[#207c35]"
+            >
+              recruitment@zunoks.com
+            </a>{" "}
+            with the subject: “Work with ZUNOKS”
+          </p>
+
+          <a
+            href="mailto:recruitment@zunoks.com?subject=Work%20with%20ZUNOKS"
+            aria-label="Send your application to ZUNOKS"
+            className="group flex h-8 w-8 items-center justify-center rounded-full border border-black/[0.06] bg-white text-[var(--z-green)] shadow-sm transition-all duration-300 hover:bg-[var(--z-green)] hover:text-white sm:h-9 sm:w-9"
+          >
+            <ArrowRight
+              size={13}
+              strokeWidth={1.8}
+              className="transition-transform duration-300 group-hover:translate-x-0.5"
+              aria-hidden="true"
             />
+          </a>
+        </div>
 
-            <span className="text-[0.58rem] font-semibold uppercase tracking-[0.19em] text-black/35">
-              Choose your path
-            </span>
+        <div data-life className="relative pt-[clamp(2.5rem,4.5vw,4.5rem)]">
+          <div className="max-w-[70rem]">
+            <p
+              data-life-copy
+              className="text-[0.52rem] font-semibold uppercase tracking-[0.2em] text-[var(--z-green)] sm:text-[0.62rem]"
+            >
+              Inside ZUNOKS
+            </p>
+            <h2
+              data-life-copy
+              className="mt-1.5 font-serif text-[clamp(2.25rem,5.3vw,6rem)] leading-[0.92] tracking-[-0.045em]"
+            >
+              Life at <span className="text-[var(--z-green)]">ZUNOKS</span>
+              <span className="text-[var(--z-orange)]">.</span>
+            </h2>
+            <p
+              data-life-copy
+              className="mt-3 max-w-[70rem] text-[0.68rem] leading-[1.65] text-black/50 sm:text-[0.82rem] lg:text-[0.95rem]"
+            >
+              We are a closely knit unit that believes in creating an
+              environment that fosters openness and enables collaboration. Our
+              open work &amp; fun environment doesn’t limit you to a desk.
+              Whether it’s over a cup of Espresso or a can of soda, we free up
+              your mind, stimulate your creative ingenuity and inspire you to
+              innovate to learn from the best resources and deliver work of
+              highest professional standard for our clients.
+            </p>
           </div>
 
-          <div className="relative grid md:grid-cols-2">
-            {careerPaths.map((item, index) => {
-              const Icon = item.icon;
-              const green = item.accent === "green";
-
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  data-career-path
-                  className={`group relative min-h-[185px] overflow-hidden p-6 transition-all duration-500 md:p-7 ${
+          <div
+            data-gallery
+            className="mt-5 grid grid-cols-2 gap-2 sm:mt-7 sm:gap-3"
+          >
+            {gallery.map((image, index) => (
+              <div
+                key={image.src}
+                data-gallery-card
+                className={`group relative overflow-hidden rounded-[0.85rem] border border-white bg-white shadow-[0_14px_38px_-26px_rgba(25,51,28,0.38)] sm:rounded-[1.1rem] ${
+                  index === 0
+                    ? "col-span-2 aspect-[3.7/1]"
+                    : "aspect-[1.85/1]"
+                }`}
+              >
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  fill
+                  sizes={
                     index === 0
-                      ? "border-b border-black/[0.08] md:border-r"
-                      : index === 1
-                        ? "border-b border-black/[0.08]"
-                        : index === 2
-                          ? "border-b border-black/[0.08] md:border-b-0 md:border-r"
-                          : ""
-                  }`}
-                >
-                  <div
-                    className={`pointer-events-none absolute inset-0 origin-center scale-95 opacity-0 transition-all duration-500 group-hover:scale-100 group-hover:opacity-100 ${
-                      green
-                        ? "bg-[linear-gradient(120deg,rgba(49,155,66,0.10),rgba(255,255,255,0.20))]"
-                        : "bg-[linear-gradient(120deg,rgba(232,196,76,0.13),rgba(255,255,255,0.20))]"
-                    }`}
-                  />
-
-                  <div className="relative flex h-full items-start justify-between gap-6">
-                    <div className="flex gap-4">
-                      <span className="pt-1 text-[0.58rem] font-semibold tracking-[0.16em] text-black/28">
-                        {item.index}
-                      </span>
-
-                      <div>
-                        <div
-                          className={`mb-5 flex h-10 w-10 items-center justify-center rounded-full ${
-                            green
-                              ? "bg-[rgba(49,155,66,0.10)] text-[var(--z-green)]"
-                              : "bg-[rgba(232,196,76,0.16)] text-[#b58a13]"
-                          }`}
-                        >
-                          <Icon
-                            size={17}
-                            strokeWidth={1.6}
-                          />
-                        </div>
-
-                        <h2 className="text-[clamp(1.25rem,1.6vw,1.55rem)] font-medium tracking-[-0.035em] text-black/78">
-                          {item.title}
-                        </h2>
-
-                        <p className="mt-2 max-w-[24rem] text-sm leading-6 text-black/43">
-                          {item.description}
-                        </p>
-                      </div>
-                    </div>
-
-                    <span
-                      className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full border transition-all duration-500 group-hover:rotate-45 ${
-                        green
-                          ? "border-[var(--z-green)]/18 bg-white/55 text-[var(--z-green)] group-hover:bg-[var(--z-green)] group-hover:text-white"
-                          : "border-[#d7b747]/25 bg-white/55 text-[#a87f0f] group-hover:bg-[#d8b83e] group-hover:text-white"
-                      }`}
-                    >
-                      <ArrowUpRight
-                        size={15}
-                        strokeWidth={1.7}
-                      />
-                    </span>
-                  </div>
-                </Link>
-              );
-            })}
+                      ? "(max-width: 1535px) 100vw, 1536px"
+                      : "(max-width: 767px) 50vw, 768px"
+                  }
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.025]"
+                />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-white/5 opacity-65 transition-opacity duration-500 group-hover:opacity-30" />
+              </div>
+            ))}
           </div>
         </div>
       </div>

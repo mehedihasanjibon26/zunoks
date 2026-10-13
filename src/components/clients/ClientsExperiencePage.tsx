@@ -207,14 +207,14 @@ export default function ClientsExperiencePage({
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden bg-[#f2f2ed] pb-[clamp(4rem,7vw,7rem)] pt-[7.7rem] text-black md:pt-[8.3rem]"
+      className="relative overflow-hidden bg-[#f2f2ed] pb-[clamp(2.75rem,4.5vw,4.5rem)] pt-[7.25rem] text-black md:pt-[7.75rem]"
     >
       <div className="mx-auto w-full max-w-[var(--container-wide)] px-[var(--page-gutter)]">
         {type === "clients" && <ClientsHero data={data} />}
         {type === "case-studies" && <CaseStudiesHero data={data} />}
         {type === "client-impact" && <ClientImpactHero data={data} />}
 
-        <div data-client-content className="mt-[clamp(4rem,7vw,7rem)]">
+        <div data-client-content className="mt-[clamp(2.75rem,4.5vw,4.5rem)]">
           {type === "clients" && <ClientsContent />}
           {type === "case-studies" && <CaseStudiesContent />}
           {type === "client-impact" && <ClientImpactContent />}
@@ -230,7 +230,7 @@ type PageMeta = (typeof pageMeta)[ClientsPageType];
 
 function ClientsHero({ data }: { data: PageMeta }) {
   return (
-    <div className="relative min-h-[560px] overflow-hidden rounded-[2.4rem] bg-[#071713] px-6 py-12 text-white shadow-[0_35px_100px_rgba(5,35,25,0.22)] md:px-10 lg:px-14">
+    <div className="relative min-h-[500px] overflow-hidden rounded-[2.4rem] bg-[#071713] px-6 py-9 text-white shadow-[0_35px_100px_rgba(5,35,25,0.22)] md:px-10 lg:px-14">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_15%,rgba(71,174,96,0.28),transparent_35%),linear-gradient(125deg,#071713_0%,#0c2c21_48%,#173f2a_100%)]" />
       <div
         data-client-glow
@@ -242,7 +242,7 @@ function ClientsHero({ data }: { data: PageMeta }) {
       />
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:72px_72px]" />
 
-      <div className="relative z-10 grid min-h-[460px] items-center gap-12 lg:grid-cols-[0.92fr_1.08fr]">
+      <div className="relative z-10 grid min-h-[420px] items-center gap-8 lg:grid-cols-[0.92fr_1.08fr]">
         <div>
           <Eyebrow label={data.eyebrow} tone="green" />
           <HeroTitle
@@ -308,7 +308,7 @@ function ClientsHero({ data }: { data: PageMeta }) {
 
 function CaseStudiesHero({ data }: { data: PageMeta }) {
   return (
-    <div className="relative min-h-[560px] overflow-hidden rounded-[2.4rem] bg-[#171411] px-6 py-12 text-white shadow-[0_35px_100px_rgba(45,28,12,0.22)] md:px-10 lg:px-14">
+    <div className="relative min-h-[500px] overflow-hidden rounded-[2.4rem] bg-[#171411] px-6 py-9 text-white shadow-[0_35px_100px_rgba(45,28,12,0.22)] md:px-10 lg:px-14">
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(120deg,#13110f_0%,#2e241b_52%,#624226_100%)]" />
       <div
         data-client-glow
@@ -324,7 +324,7 @@ function CaseStudiesHero({ data }: { data: PageMeta }) {
         className="pointer-events-none absolute -inset-y-[30%] left-[-18%] w-[26%] rotate-[15deg] bg-gradient-to-r from-transparent via-[#f5c47f]/30 to-transparent blur-2xl"
       />
 
-      <div className="relative z-10 grid min-h-[460px] items-center gap-12 lg:grid-cols-[1fr_1fr]">
+      <div className="relative z-10 grid min-h-[420px] items-center gap-8 lg:grid-cols-[1fr_1fr]">
         <div>
           <Eyebrow label={data.eyebrow} tone="orange" />
           <HeroTitle
@@ -377,7 +377,7 @@ function CaseStudiesHero({ data }: { data: PageMeta }) {
 
 function ClientImpactHero({ data }: { data: PageMeta }) {
   return (
-    <div className="relative min-h-[560px] overflow-hidden rounded-[2.4rem] bg-[#111b2b] px-6 py-12 text-white shadow-[0_35px_100px_rgba(13,28,50,0.23)] md:px-10 lg:px-14">
+    <div className="relative min-h-[500px] overflow-hidden rounded-[2.4rem] bg-[#111b2b] px-6 py-9 text-white shadow-[0_35px_100px_rgba(13,28,50,0.23)] md:px-10 lg:px-14">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_18%,rgba(65,137,181,0.32),transparent_32%),linear-gradient(125deg,#101826_0%,#18334a_52%,#1d594f_100%)]" />
       <div
         data-client-glow
@@ -393,7 +393,7 @@ function ClientImpactHero({ data }: { data: PageMeta }) {
         className="pointer-events-none absolute -inset-y-[25%] left-[-18%] w-[25%] -rotate-[16deg] bg-gradient-to-r from-transparent via-[#a7ddcf]/25 to-transparent blur-2xl"
       />
 
-      <div className="relative z-10 grid min-h-[460px] items-center gap-12 lg:grid-cols-[0.92fr_1.08fr]">
+      <div className="relative z-10 grid min-h-[420px] items-center gap-8 lg:grid-cols-[0.92fr_1.08fr]">
         <div>
           <Eyebrow label={data.eyebrow} tone="blue" />
           <HeroTitle
@@ -644,7 +644,7 @@ function ClientNavigation({ active }: { active: ClientsPageType }) {
   ];
 
   return (
-    <div className="mt-[clamp(4rem,7vw,7rem)] border-t border-black/10 pt-7">
+    <div className="mt-[clamp(2.75rem,4.5vw,4.5rem)] border-t border-black/10 pt-5">
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>
           <p className="text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-black/30">Clients & Impact</p>

@@ -10,47 +10,15 @@ import {
 import { ArrowUpRight } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { partners } from "@/data/partners";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const founders = [
-  {
-    id: 0,
-    name: "Quazi M Shahed",
-    role: "Co-founder & Partner",
-    href: "/leadership/quazi-m-shahed",
-    image:
-      "/images/founders/quazi-m-shahed.png",
-    tone: "green",
-  },
-  {
-    id: 1,
-    name: "Matiul I Nowshad",
-    role: "Co-founder & Partner",
-    href: "/leadership/matiul-i-nowshad",
-    image:
-      "/images/founders/matiul-i-nowshad.png",
-    tone: "orange",
-  },
-  {
-    id: 2,
-    name: "Saifuddin M Khaled",
-    role: "Co-founder & Partner",
-    href: "/leadership/saifuddin-m-khaled",
-    image:
-      "/images/founders/saifuddin-m-khaled.png",
-    tone: "green",
-  },
-  {
-    id: 3,
-    name: "Zulfikar Hyder",
-    role: "Co-founder & Managing Partner",
-    href: "/leadership/zulfikar-hyder",
-    image:
-      "/images/founders/zulfikar-hyder.png",
-    tone: "orange",
-  },
-];
+const founders = partners.map((partner, id) => ({
+  ...partner,
+  id,
+  tone: partner.accent,
+}));
 
 const carouselItems = [
   ...founders,
@@ -230,7 +198,7 @@ export default function FoundersOverview() {
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden bg-[#090b09] py-[clamp(2.5rem,3.4vw,4rem)] text-white"
+      className="relative overflow-hidden bg-[#090b09] py-[clamp(2rem,2.8vw,3.1rem)] text-white"
     >
       {/* BACKGROUND */}
       <div className="pointer-events-none absolute inset-0">
@@ -352,7 +320,11 @@ export default function FoundersOverview() {
                       }`}
                     >
                       {/* PORTRAIT */}
-                      <div className="absolute inset-0 bg-[#111411]">
+                      <Link
+                        href={founder.href}
+                        aria-label={`View ${founder.name}`}
+                        className="absolute inset-0 z-10 bg-[#111411]"
+                      >
                         <Image
                           src={
                             founder.image
@@ -367,7 +339,7 @@ export default function FoundersOverview() {
                           }
                           className="object-cover object-top"
                         />
-                      </div>
+                      </Link>
 
                       {/* CINEMATIC OVERLAY */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/8 to-transparent" />
@@ -422,9 +394,9 @@ export default function FoundersOverview() {
                         />
 
                         <h3 className="text-[clamp(1.3rem,1.8vw,1.8rem)] font-medium leading-[0.98] tracking-[-0.045em] text-white">
-                          {
-                            founder.name
-                          }
+                          <Link href={founder.href}>
+                            {founder.name}
+                          </Link>
                         </h3>
 
                         <div className="mt-3 border-t border-white/12 pt-3">

@@ -1,9 +1,9 @@
-import ClientsExperiencePage from "@/components/clients/ClientsExperiencePage";
+import CaseStudiesLandingPage from "@/components/clients/CaseStudiesLandingPage";
 
 export default function CaseStudiesPage() {
   return (
     <main className="overflow-x-hidden">
-      <ClientsExperiencePage type="case-studies" />
+      <CaseStudiesLandingPage />
     </main>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import {
   ArrowRight,
@@ -10,8 +11,28 @@ import {
 } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { partners } from "@/data/partners";
 
 gsap.registerPlugin(ScrollTrigger);
+
+const founderPortraitHotspots = [
+  {
+    partner: partners.find(({ slug }) => slug === "matiul-i-nowshad")!,
+    className: "left-[8%] top-[2%] h-[55%] w-[43%]",
+  },
+  {
+    partner: partners.find(({ slug }) => slug === "quazi-m-shahed")!,
+    className: "left-[52%] top-0 h-[55%] w-[40%]",
+  },
+  {
+    partner: partners.find(({ slug }) => slug === "saifuddin-m-khaled")!,
+    className: "bottom-0 left-0 h-[65%] w-[52%]",
+  },
+  {
+    partner: partners.find(({ slug }) => slug === "zulfikar-hyder")!,
+    className: "bottom-0 right-0 h-[66%] w-[48%]",
+  },
+] as const;
 
 const storyItems = [
   {
@@ -145,7 +166,7 @@ export default function AboutStory() {
     <section
       id="our-story"
       ref={sectionRef}
-      className="relative overflow-hidden bg-[#0a0d0a] py-[clamp(4rem,7vw,7rem)] text-white"
+      className="relative overflow-hidden bg-[#0a0d0a] py-[clamp(2.75rem,4.5vw,4.5rem)] text-white"
     >
       {/* BACKGROUND */}
       <div className="pointer-events-none absolute inset-0">
@@ -203,7 +224,7 @@ export default function AboutStory() {
           <div
             data-story-reveal
             ref={imageRef}
-            className="relative min-h-[560px] overflow-hidden rounded-[2.3rem] border border-white/[0.12] bg-white/[0.04] shadow-[0_30px_90px_rgba(0,0,0,0.32)]"
+            className="relative min-h-[500px] overflow-hidden rounded-[2.3rem] border border-white/[0.12] bg-white/[0.04] shadow-[0_30px_90px_rgba(0,0,0,0.32)]"
           >
             <Image
               src="/images/about/zunoks-founders-group.png"
@@ -213,6 +234,16 @@ export default function AboutStory() {
               sizes="(max-width: 1024px) 100vw, 48vw"
               className="object-cover object-center"
             />
+
+            {founderPortraitHotspots.map(({ partner, className }) => (
+              <Link
+                key={partner.slug}
+                href={partner.href}
+                aria-label={`View ${partner.name}`}
+                title={partner.name}
+                className={`absolute z-20 ${className}`}
+              />
+            ))}
 
             {/* much lighter overlay so image remains visible */}
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />

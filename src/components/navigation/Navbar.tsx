@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import {
   ArrowUpRight,
   ChevronDown,
@@ -18,7 +19,6 @@ type MenuKey =
   | "about"
   | "services"
   | "clients"
-  | "insights"
   | "work";
 
 type MegaMenuItem = {
@@ -62,6 +62,12 @@ const megaMenus: Record<MenuKey, MegaMenuGroup> = {
         description:
           "Meet the senior professionals behind ZUNOKS.",
       },
+      {
+        label: "Services",
+        href: "/about/services",
+        description:
+          "See how ZUNOKS helps organizations move forward.",
+      },
     ],
   },
 
@@ -99,33 +105,6 @@ const megaMenus: Record<MenuKey, MegaMenuGroup> = {
         href: "/client-impact",
         description:
           "Challenges, interventions and outcomes.",
-      },
-    ],
-  },
-
-  insights: {
-    eyebrow: "Knowledge & Perspective",
-    title: "Ideas shaped by real leadership experience.",
-    description:
-      "Thought leadership, perspectives and updates across business, people and transformation.",
-    items: [
-      {
-        label: "Insights",
-        href: "/insights",
-        description:
-          "Featured perspectives and thought leadership.",
-      },
-      {
-        label: "News",
-        href: "/insights?type=news",
-        description:
-          "Updates from ZUNOKS and its ecosystem.",
-      },
-      {
-        label: "Blogs",
-        href: "/insights?type=blog",
-        description:
-          "Ideas from leaders and subject-matter experts.",
       },
     ],
   },
@@ -173,6 +152,171 @@ const searchSuggestions = [
   "Gamified Recruitment",
 ];
 
+type SearchEntry = {
+  title: string;
+  href: string;
+  category: string;
+  description: string;
+  keywords: string;
+};
+
+const searchIndex: SearchEntry[] = [
+  {
+    title: "Home",
+    href: "/",
+    category: "Overview",
+    description: "Explore ZUNOKS, its expertise, people and impact.",
+    keywords: "home consulting zunoks management",
+  },
+  {
+    title: "About ZUNOKS",
+    href: "/about",
+    category: "About Us",
+    description: "Learn about ZUNOKS and its consulting approach.",
+    keywords: "about company firm experience",
+  },
+  {
+    title: "Our Story",
+    href: "/about/our-story",
+    category: "About Us",
+    description: "Discover where ZUNOKS began and where it is heading.",
+    keywords: "history yesterday today tomorrow founders",
+  },
+  {
+    title: "Vision, Mission & Values",
+    href: "/about/vision-mission-values",
+    category: "About Us",
+    description: "The principles and ambitions that guide ZUNOKS.",
+    keywords: "vision mission values purpose integrity",
+  },
+  {
+    title: "Founders",
+    href: "/about/founders",
+    category: "About Us",
+    description: "Meet the senior professionals behind ZUNOKS.",
+    keywords: "leadership people team partners founders",
+  },
+  {
+    title: "Services Overview",
+    href: "/about/services",
+    category: "About Us",
+    description: "Explore ZUNOKS capabilities across seven service areas.",
+    keywords: "services expertise capabilities consulting",
+  },
+  {
+    title: "Strategic Interventions",
+    href: "/services/strategic-interventions",
+    category: "Our Services",
+    description: "Strategy, transformation, governance and organizational design.",
+    keywords: "business strategy transformation merger acquisition risk compliance",
+  },
+  {
+    title: "Human Resources",
+    href: "/services/human-resources",
+    category: "Our Services",
+    description: "Culture, leadership, talent and performance systems.",
+    keywords: "hr human resources people culture talent performance succession rewards",
+  },
+  {
+    title: "Gamified Recruitment",
+    href: "/services/gamified-recruitment",
+    category: "Our Services",
+    description: "AI-driven gamified talent assessment and candidate insight.",
+    keywords: "games recruitment assessment ai personality cognitive aptitude behavior",
+  },
+  {
+    title: "Manufacturing & Supply Chain",
+    href: "/services/manufacturing-supply-chain",
+    category: "Our Services",
+    description: "Operational excellence across manufacturing and supply chains.",
+    keywords: "operations factory process erp manufacturing supply chain safety",
+  },
+  {
+    title: "Executive Search",
+    href: "/services/executive-search",
+    category: "Our Services",
+    description: "Senior leadership, board and executive talent search.",
+    keywords: "cxo board recruitment workforce executive search talent mapping",
+  },
+  {
+    title: "Executive Coaching",
+    href: "/services/executive-coaching",
+    category: "Our Services",
+    description: "Coaching, mentoring and career management for leaders.",
+    keywords: "leadership development mentoring coaching career executives",
+  },
+  {
+    title: "Shared Services",
+    href: "/services/shared-services",
+    category: "Our Services",
+    description: "HR operations, payroll, training, BPO and HRIS support.",
+    keywords: "shared services payroll outsourcing hris training back office",
+  },
+  {
+    title: "Our Clients",
+    href: "/clients",
+    category: "Our Clients",
+    description: "Explore the sectors and organizations ZUNOKS supports.",
+    keywords: "clients industries sectors organizations",
+  },
+  {
+    title: "Case Studies",
+    href: "/case-studies",
+    category: "Our Clients",
+    description: "Selected consulting and transformation stories.",
+    keywords: "case studies projects transformation results",
+  },
+  {
+    title: "Client Impact",
+    href: "/client-impact",
+    category: "Our Clients",
+    description: "Challenges, interventions and outcomes created with clients.",
+    keywords: "impact outcomes results clients value",
+  },
+  {
+    title: "CSR & Social Impact",
+    href: "/social-impact",
+    category: "CSR",
+    description: "ZUNOKS commitment to society and sustainable progress.",
+    keywords: "csr social impact society sustainability community responsibility",
+  },
+  {
+    title: "Work With Us",
+    href: "/careers/work-with-us",
+    category: "Careers",
+    description: "Discover the ZUNOKS consulting environment.",
+    keywords: "careers jobs work culture join team",
+  },
+  {
+    title: "Career Opportunities",
+    href: "/careers/career-opportunities",
+    category: "Careers",
+    description: "Explore current and future opportunities at ZUNOKS.",
+    keywords: "careers vacancies jobs openings opportunities",
+  },
+  {
+    title: "Young Professionals",
+    href: "/careers/young-professionals",
+    category: "Careers",
+    description: "Start and develop a career in consulting.",
+    keywords: "graduate student young professionals early career",
+  },
+  {
+    title: "Experienced Professionals",
+    href: "/careers/experienced-professionals",
+    category: "Careers",
+    description: "Bring professional expertise to wider challenges.",
+    keywords: "experienced senior professionals experts careers",
+  },
+  {
+    title: "Contact ZUNOKS",
+    href: "/contact",
+    category: "Contact",
+    description: "Start a conversation with the ZUNOKS team.",
+    keywords: "contact email phone office address conversation",
+  },
+];
+
 const mobileNavigation = [
   ["Home", "/"],
   ["About Us", "/about"],
@@ -182,9 +326,10 @@ const mobileNavigation = [
     "/about/vision-mission-values",
   ],
   ["Founders", "/about/founders"],
+  ["Services", "/about/services"],
   ["Our Services", "/services"],
   ["Our Clients", "/clients"],
-  ["Insights", "/insights"],
+  ["CSR", "/social-impact"],
 
   ["Work With Us", "/careers/work-with-us"],
   [
@@ -200,11 +345,11 @@ const mobileNavigation = [
     "/careers/experienced-professionals",
   ],
 
-  ["Social Impact", "/social-impact"],
   ["Contact", "/contact"],
 ] as const;
 
 export default function Navbar() {
+  const router = useRouter();
   const headerRef = useRef<HTMLElement>(null);
   const shellRef = useRef<HTMLDivElement>(null);
   const desktopNavRef = useRef<HTMLDivElement>(null);
@@ -215,11 +360,43 @@ export default function Navbar() {
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const [activeMega, setActiveMega] =
     useState<MenuKey | null>(null);
 
   const [scrolled, setScrolled] = useState(false);
+
+  const searchResults = useMemo(() => {
+    const terms = searchQuery
+      .trim()
+      .toLowerCase()
+      .split(/\s+/)
+      .filter(Boolean);
+
+    if (terms.length === 0) return [];
+
+    return searchIndex
+      .map((entry) => {
+        const title = entry.title.toLowerCase();
+        const category = entry.category.toLowerCase();
+        const searchable = `${title} ${category} ${entry.description.toLowerCase()} ${entry.keywords}`;
+        const matches = terms.filter((term) => searchable.includes(term));
+        const score = matches.reduce((total, term) => {
+          if (title === term) return total + 8;
+          if (title.startsWith(term)) return total + 5;
+          if (title.includes(term)) return total + 3;
+          if (category.includes(term)) return total + 2;
+          return total + 1;
+        }, 0);
+
+        return { entry, score, matches: matches.length };
+      })
+      .filter((result) => result.matches === terms.length)
+      .sort((a, b) => b.score - a.score || a.entry.title.localeCompare(b.entry.title))
+      .slice(0, 8)
+      .map((result) => result.entry);
+  }, [searchQuery]);
 
   /*
    * Scroll state.
@@ -564,6 +741,7 @@ export default function Navbar() {
     ) => {
       if (event.key === "Escape") {
         setSearchOpen(false);
+        setSearchQuery("");
         setActiveMega(null);
       }
     };
@@ -595,10 +773,33 @@ export default function Navbar() {
 
   const toggleSearch = () => {
     setActiveMega(null);
+    setMenuOpen(false);
+
+    if (searchOpen) {
+      setSearchQuery("");
+    }
 
     setSearchOpen(
       (current) => !current,
     );
+  };
+
+  const closeSearch = () => {
+    setSearchOpen(false);
+    setSearchQuery("");
+  };
+
+  const openSearchResult = (href: string) => {
+    closeSearch();
+    router.push(href);
+  };
+
+  const submitSearch = () => {
+    const firstResult = searchResults[0];
+
+    if (firstResult) {
+      openSearchResult(firstResult.href);
+    }
   };
 
   const toggleMega = (
@@ -617,6 +818,7 @@ export default function Navbar() {
   const handleNavigationSelection =
     () => {
       setActiveMega(null);
+      closeSearch();
     };
 
   const currentMega = activeMega
@@ -812,32 +1014,6 @@ export default function Navbar() {
                   }
                 />
 
-                <NavMegaButton
-                  label="Insights"
-                  menuKey="insights"
-                  activeMega={activeMega}
-                  toggleMega={toggleMega}
-                  navItemClass={
-                    navItemClass
-                  }
-                  navLabelClass={
-                    navLabelClass
-                  }
-                />
-
-                <NavMegaButton
-                  label="Work With Us"
-                  menuKey="work"
-                  activeMega={activeMega}
-                  toggleMega={toggleMega}
-                  navItemClass={
-                    navItemClass
-                  }
-                  navLabelClass={
-                    navLabelClass
-                  }
-                />
-
                 <Link
                   data-nav-item
                   href="/social-impact"
@@ -853,9 +1029,22 @@ export default function Navbar() {
                       navLabelClass
                     }
                   >
-                    Social Impact
+                    CSR
                   </span>
                 </Link>
+
+                <NavMegaButton
+                  label="Work With Us"
+                  menuKey="work"
+                  activeMega={activeMega}
+                  toggleMega={toggleMega}
+                  navItemClass={
+                    navItemClass
+                  }
+                  navLabelClass={
+                    navLabelClass
+                  }
+                />
 
                 <Link
                   data-nav-item
@@ -1104,6 +1293,9 @@ export default function Navbar() {
         {searchOpen && (
           <div
             ref={searchPanelRef}
+            id="global-site-search"
+            role="search"
+            aria-label="Search ZUNOKS"
             className="mx-auto mt-3 w-full max-w-[var(--container-wide)] overflow-hidden rounded-[1.8rem] border border-white/50 bg-white/[0.42] shadow-[0_30px_100px_rgba(0,0,0,0.16),inset_0_1px_0_rgba(255,255,255,0.75)] backdrop-blur-[40px] backdrop-saturate-[1.4]"
           >
             <div className="relative overflow-hidden px-6 py-8 lg:px-10 lg:py-10">
@@ -1149,10 +1341,70 @@ export default function Navbar() {
                       searchInputRef
                     }
                     type="search"
+                    value={searchQuery}
+                    onChange={(event) => setSearchQuery(event.target.value)}
+                    onKeyDown={(event) => {
+                      if (event.key === "Enter") {
+                        event.preventDefault();
+                        submitSearch();
+                      }
+                    }}
+                    aria-label="Search pages and services"
                     placeholder="Search services, insights, people..."
                     className="w-full bg-transparent text-[clamp(1.4rem,2.4vw,2.5rem)] font-medium tracking-[-0.035em] text-black outline-none placeholder:text-black/22"
                   />
                 </div>
+
+                {searchQuery.trim() && (
+                  <div data-search-item className="mt-5" aria-live="polite">
+                    <div className="flex items-center justify-between gap-4">
+                      <p className="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-black/35">
+                        Results
+                      </p>
+                      <span className="text-[0.65rem] text-black/30">
+                        {searchResults.length} {searchResults.length === 1 ? "match" : "matches"}
+                      </span>
+                    </div>
+
+                    {searchResults.length > 0 ? (
+                      <div className="mt-3 grid max-h-[min(44vh,360px)] gap-2 overflow-y-auto pr-1 md:grid-cols-2">
+                        {searchResults.map((result) => (
+                          <button
+                            key={result.href}
+                            type="button"
+                            onClick={() => openSearchResult(result.href)}
+                            className="group flex items-center gap-4 rounded-2xl border border-white/55 bg-white/[0.28] p-4 text-left shadow-[inset_0_1px_0_rgba(255,255,255,0.65)] backdrop-blur-xl transition-all duration-300 hover:border-[var(--z-green)]/35 hover:bg-white/55 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--z-green)]"
+                          >
+                            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-[var(--z-green)]/15 bg-[var(--z-green)]/[0.07] text-[var(--z-green)] transition-colors duration-300 group-hover:bg-[var(--z-green)] group-hover:text-white">
+                              <Search size={14} strokeWidth={1.6} aria-hidden="true" />
+                            </span>
+                            <span className="min-w-0 flex-1">
+                              <span className="block text-[0.56rem] font-semibold uppercase tracking-[0.15em] text-[var(--z-green)]/70">
+                                {result.category}
+                              </span>
+                              <span className="mt-1 block text-sm font-medium text-black/76">
+                                {result.title}
+                              </span>
+                              <span className="mt-1 block truncate text-xs text-black/38">
+                                {result.description}
+                              </span>
+                            </span>
+                            <ArrowUpRight
+                              size={14}
+                              strokeWidth={1.6}
+                              aria-hidden="true"
+                              className="shrink-0 text-black/25 transition-all duration-300 group-hover:rotate-45 group-hover:text-[var(--z-green)]"
+                            />
+                          </button>
+                        ))}
+                      </div>
+                    ) : (
+                      <div className="mt-3 rounded-2xl border border-white/50 bg-white/[0.22] px-5 py-4 text-sm text-black/45 backdrop-blur-xl">
+                        No matching page found. Try a service, topic or people-related term.
+                      </div>
+                    )}
+                  </div>
+                )}
 
                 <div
                   data-search-item
@@ -1173,14 +1425,8 @@ export default function Navbar() {
                           }
                           type="button"
                           onClick={() => {
-                            if (
-                              searchInputRef.current
-                            ) {
-                              searchInputRef.current.value =
-                                suggestion;
-
-                              searchInputRef.current.focus();
-                            }
+                            setSearchQuery(suggestion);
+                            searchInputRef.current?.focus();
                           }}
                           className="rounded-full border border-white/55 bg-white/[0.28] px-4 py-2.5 text-sm text-black/65 shadow-[inset_0_1px_0_rgba(255,255,255,0.62)] backdrop-blur-xl transition-all duration-300 hover:border-[var(--z-green)] hover:bg-[var(--z-green)] hover:text-white"
                         >

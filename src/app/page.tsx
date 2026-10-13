@@ -15,7 +15,7 @@ export default function HomePage() {
       </div>
 
       {/* SERVICES */}
-      <div className="home-section-compact relative z-20 -mt-[92svh]">
+      <div className="home-section-compact relative z-20">
         <ServicesOverview />
       </div>
 

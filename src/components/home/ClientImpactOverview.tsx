@@ -192,7 +192,7 @@ export default function ClientImpactOverview() {
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden bg-[#f4f4ef] py-[clamp(2.5rem,3.3vw,3.75rem)] text-black"
+      className="relative overflow-hidden bg-[#f4f4ef] py-[clamp(2rem,2.7vw,3rem)] text-black"
     >
       {/* PAGE BACKGROUND */}
       <div className="pointer-events-none absolute inset-0">
@@ -271,7 +271,7 @@ export default function ClientImpactOverview() {
           ref={visualRef}
           className="relative mt-8 overflow-hidden rounded-[2.3rem] bg-black shadow-[0_30px_85px_rgba(0,0,0,0.14)]"
         >
-          <div className="relative min-h-[500px] md:min-h-[540px]">
+          <div className="relative min-h-[450px] md:min-h-[485px]">
             {/* VIDEO */}
             <video
               data-client-video

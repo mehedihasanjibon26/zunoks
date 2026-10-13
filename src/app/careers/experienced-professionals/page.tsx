@@ -1,9 +1,9 @@
-import CareerDetailPage from "@/components/careers/CareerDetailPage";
+import ExperiencedProfessionalsExperience from "@/components/careers/ExperiencedProfessionalsExperience";
 
 export default function ExperiencedProfessionalsPage() {
   return (
     <main className="overflow-x-hidden">
-      <CareerDetailPage type="experienced-professionals" />
+      <ExperiencedProfessionalsExperience />
     </main>
   );
 }

@@ -113,7 +113,7 @@ export default function ServicesOverview() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <section className="relative overflow-hidden bg-[#f3f3ef] py-[clamp(2.5rem,3.3vw,3.75rem)] text-black">
+    <section className="relative overflow-hidden bg-[#f3f3ef] py-[clamp(2rem,2.7vw,3rem)] text-black">
       {/* BACKGROUND */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.018)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.018)_1px,transparent_1px)] bg-[size:88px_88px]" />
@@ -171,7 +171,7 @@ export default function ServicesOverview() {
 
         {/* DESKTOP ACCORDION */}
         <div className="mt-6 hidden lg:block">
-          <div className="flex h-[500px] gap-3">
+          <div className="flex h-[455px] gap-3">
             {services.map((service, index) => {
               const Icon = service.icon;
               const isActive = index === activeIndex;

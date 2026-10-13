@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useRef } from "react";
 import {
   ArrowUpRight,
@@ -8,31 +9,21 @@ import {
 } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { partners } from "@/data/partners";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const founders = [
-  {
-    name: "Quazi M Shahed",
-    role: "Founder & Managing Partner",
-    image: "/images/founders/quazi-m-shahed.png",
-  },
-  {
-    name: "Matiul I Nowshad",
-    role: "Founder & Partner",
-    image: "/images/founders/matiul-i-nowshad.png",
-  },
-  {
-    name: "Saifuddin M Khaled",
-    role: "Founder & Partner",
-    image: "/images/founders/saifuddin-m-khaled.png",
-  },
-  {
-    name: "Zulfikar Hyder",
-    role: "Founder & Partner",
-    image: "/images/founders/zulfikar-hyder.png",
-  },
-];
+const listingRoles = [
+  "Founder & Managing Partner",
+  "Founder & Partner",
+  "Founder & Partner",
+  "Founder & Partner",
+] as const;
+
+const founders = partners.map((partner, index) => ({
+  ...partner,
+  role: listingRoles[index] ?? partner.role,
+}));
 
 export default function AboutFounders() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -105,7 +96,7 @@ export default function AboutFounders() {
     <section
       id="founders"
       ref={sectionRef}
-      className="relative overflow-hidden bg-[#f3f4ef] py-[clamp(4rem,6vw,6rem)] text-black"
+      className="relative overflow-hidden bg-[#f3f4ef] py-[clamp(2.75rem,4.5vw,4.5rem)] text-black"
     >
       {/* BACKGROUND */}
       <div className="pointer-events-none absolute inset-0">
@@ -160,8 +151,9 @@ export default function AboutFounders() {
         {/* FOUNDERS GRID */}
         <div className="mt-11 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
           {founders.map((founder, index) => (
-            <article
+            <Link
               key={founder.name}
+              href={founder.href}
               data-founder-card
               className="group relative overflow-hidden rounded-[2rem] border border-white/70 bg-white/[0.42] shadow-[0_24px_70px_rgba(0,0,0,0.06),inset_0_1px_0_rgba(255,255,255,0.88)] backdrop-blur-[28px]"
             >
@@ -241,7 +233,7 @@ export default function AboutFounders() {
                   </span>
                 </div>
               </div>
-            </article>
+            </Link>
           ))}
         </div>
 

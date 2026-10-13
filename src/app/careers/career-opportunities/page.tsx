@@ -1,9 +1,9 @@
-import CareerDetailPage from "@/components/careers/CareerDetailPage";
+import CareerOpportunitiesExperience from "@/components/careers/CareerOpportunitiesExperience";
 
 export default function CareerOpportunitiesPage() {
   return (
     <main className="overflow-x-hidden">
-      <CareerDetailPage type="career-opportunities" />
+      <CareerOpportunitiesExperience />
     </main>
   );
 }

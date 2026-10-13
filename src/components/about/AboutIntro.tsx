@@ -438,7 +438,7 @@ export default function AboutIntro() {
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden bg-[#f1f2ed] pb-[clamp(4rem,6vw,6rem)] pt-[7.7rem] text-black md:pt-[8.3rem]"
+      className="relative overflow-hidden bg-[#f1f2ed] pb-[clamp(2.75rem,4.5vw,4.5rem)] pt-[7.25rem] text-black md:pt-[7.75rem]"
     >
       <div className="relative mx-auto w-full max-w-[var(--container-wide)] px-[var(--page-gutter)]">
         {/* ================================================= */}
@@ -447,7 +447,7 @@ export default function AboutIntro() {
 
         <div
           ref={heroRef}
-          className="relative flex min-h-[440px] items-center overflow-hidden rounded-[2rem] bg-[#0c473d] px-5 py-12 text-white shadow-[0_30px_90px_rgba(10,55,45,0.17)] md:min-h-[470px] md:px-10 md:py-14 lg:px-14"
+          className="relative flex min-h-[390px] items-center overflow-hidden rounded-[2rem] bg-[#0c473d] px-5 py-9 text-white shadow-[0_30px_90px_rgba(10,55,45,0.17)] md:min-h-[420px] md:px-10 md:py-10 lg:px-14"
         >
           <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(120deg,#063d34_0%,#126a50_34%,#5b9c45_65%,#e0bd58_100%)]" />
 
@@ -563,7 +563,7 @@ export default function AboutIntro() {
 
         <div
           ref={editorialRef}
-          className="relative mt-[clamp(4rem,7vw,7rem)] overflow-hidden border-y border-black/[0.08] py-[clamp(4rem,7vw,7rem)]"
+          className="relative mt-[clamp(2.75rem,4.5vw,4.5rem)] overflow-hidden border-y border-black/[0.08] py-[clamp(2.75rem,4.5vw,4.5rem)]"
         >
           <div className="pointer-events-none absolute inset-0">
             <div
@@ -584,7 +584,7 @@ export default function AboutIntro() {
             </div>
           </div>
 
-          <div className="relative grid gap-12 lg:grid-cols-[0.72fr_1.28fr]">
+          <div className="relative grid gap-8 lg:grid-cols-[0.72fr_1.28fr]">
             <div
               data-editorial-reveal
               className="lg:sticky lg:top-32 lg:self-start"
@@ -715,7 +715,7 @@ export default function AboutIntro() {
 
         <div
           ref={treeRef}
-          className="relative mt-[clamp(4rem,7vw,6rem)]"
+          className="relative mt-[clamp(2.75rem,4.5vw,4.25rem)]"
         >
           <div className="mb-7 text-center">
             <p className="text-[0.61rem] font-semibold uppercase tracking-[0.2em] text-[var(--z-green)]">
@@ -763,7 +763,7 @@ export default function AboutIntro() {
           {/* DESKTOP TREE */}
           {/* ================================================= */}
 
-          <div className="relative mx-auto hidden min-h-[860px] max-w-[1120px] lg:block">
+          <div className="relative mx-auto hidden min-h-[720px] max-w-[1120px] lg:block">
             <svg
               className="pointer-events-none absolute inset-0 h-full w-full overflow-visible"
               viewBox="0 0 1120 860"

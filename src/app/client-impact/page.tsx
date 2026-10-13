@@ -1,9 +1,9 @@
-import ClientsExperiencePage from "@/components/clients/ClientsExperiencePage";
+import ClientImpactLandingPage from "@/components/clients/ClientImpactLandingPage";
 
 export default function ClientImpactPage() {
   return (
     <main className="overflow-x-hidden">
-      <ClientsExperiencePage type="client-impact" />
+      <ClientImpactLandingPage />
     </main>
   );
 }

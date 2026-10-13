@@ -511,7 +511,7 @@ export default function GamifiedRecruitmentOverview() {
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden bg-[#eef0e9] py-[clamp(2.5rem,3.4vw,4rem)] text-black"
+      className="relative overflow-hidden bg-[#eef0e9] py-[clamp(2rem,2.8vw,3.1rem)] text-black"
     >
       {/* BACKGROUND */}
       <div className="pointer-events-none absolute inset-0">
@@ -520,7 +520,7 @@ export default function GamifiedRecruitmentOverview() {
         <div className="absolute -bottom-[12rem] left-[8%] h-[30rem] w-[30rem] rounded-full bg-[var(--z-orange)] opacity-[0.05] blur-[145px]" />
       </div>
 
-      <div className="relative mx-auto grid w-full max-w-[var(--container-wide)] gap-10 px-[var(--page-gutter)] lg:grid-cols-[0.82fr_1.18fr] lg:items-start lg:gap-14">
+      <div className="relative mx-auto grid w-full max-w-[var(--container-wide)] gap-8 px-[var(--page-gutter)] lg:grid-cols-[0.82fr_1.18fr] lg:items-start lg:gap-11">
         {/* LEFT */}
         <div ref={copyRef}>
           <div

@@ -372,7 +372,7 @@ export default function WorkWithUsOverview() {
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden bg-[#080b09] py-[clamp(2.5rem,3.4vw,4rem)] text-white"
+      className="relative overflow-hidden bg-[#080b09] py-[clamp(2rem,2.8vw,3.1rem)] text-white"
     >
       {/* AMBIENT BACKGROUND */}
       <div className="pointer-events-none absolute inset-0">
@@ -414,7 +414,7 @@ export default function WorkWithUsOverview() {
             {/* LEFT IMAGE */}
             <div
               ref={imagePanelRef}
-              className="relative min-h-[500px] overflow-hidden lg:min-h-[590px]"
+              className="relative min-h-[450px] overflow-hidden lg:min-h-[520px]"
             >
               <div
                 ref={imageRef}
@@ -457,7 +457,7 @@ export default function WorkWithUsOverview() {
               </div>
 
               {/* QUOTE */}
-              <div className="relative z-10 flex min-h-[500px] items-end p-6 md:p-8 lg:min-h-[590px] lg:p-9">
+              <div className="relative z-10 flex min-h-[450px] items-end p-6 md:p-8 lg:min-h-[520px] lg:p-9">
                 <div className="max-w-[760px]">
                   <span
                     data-quote-reveal
@@ -494,7 +494,7 @@ export default function WorkWithUsOverview() {
             {/* RIGHT GLASS CONTENT */}
             <div
               ref={contentRef}
-              className="relative flex min-h-[500px] flex-col justify-between border-t border-white/10 bg-white/[0.055] p-6 backdrop-blur-[32px] md:p-8 lg:min-h-[590px] lg:border-l lg:border-t-0 lg:p-9"
+              className="relative flex min-h-[450px] flex-col justify-between border-t border-white/10 bg-white/[0.055] p-6 backdrop-blur-[32px] md:p-8 lg:min-h-[520px] lg:border-l lg:border-t-0 lg:p-9"
             >
               {/* RIGHT AMBIENT LIGHTS */}
               <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-[var(--z-green)] opacity-[0.10] blur-[100px]" />

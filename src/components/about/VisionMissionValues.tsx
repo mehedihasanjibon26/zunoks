@@ -141,7 +141,7 @@ export default function VisionMissionValues() {
     <section
       id="vision-mission-values"
       ref={sectionRef}
-      className="relative overflow-hidden bg-[#eef0e9] pb-[clamp(4rem,6vw,6rem)] pt-[9rem] text-black md:pt-[10rem]"
+      className="relative overflow-hidden bg-[#eef0e9] pb-[clamp(2.75rem,4.5vw,4.5rem)] pt-[7.25rem] text-black md:pt-[7.75rem]"
     >
       {/* BACKGROUND */}
       <div className="pointer-events-none absolute inset-0">
@@ -266,7 +266,7 @@ export default function VisionMissionValues() {
             </div>
 
             {/* RIGHT ACTIVE CONTENT */}
-            <div className="relative min-h-[500px] overflow-hidden rounded-[1.9rem] border border-white/75 bg-white/[0.46] p-6 shadow-[0_18px_55px_rgba(0,0,0,0.045),inset_0_1px_0_rgba(255,255,255,0.88)] backdrop-blur-[26px] md:p-8 lg:p-9">
+            <div className="relative min-h-[450px] overflow-hidden rounded-[1.9rem] border border-white/75 bg-white/[0.46] p-6 shadow-[0_18px_55px_rgba(0,0,0,0.045),inset_0_1px_0_rgba(255,255,255,0.88)] backdrop-blur-[26px] md:p-8 lg:p-9">
               <div className="pointer-events-none absolute -right-20 -top-20 h-52 w-52 rounded-full bg-[var(--z-green)] opacity-[0.07] blur-[80px]" />
 
               <div

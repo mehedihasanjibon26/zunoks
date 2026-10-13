@@ -123,7 +123,7 @@ export default function TransformationOverview() {
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden bg-[#f4f4ef] py-[clamp(4.25rem,5.8vw,6rem)] text-black"
+      className="relative overflow-hidden bg-[#f4f4ef] py-[clamp(2.75rem,4vw,4.25rem)] text-black"
     >
       {/* BACKGROUND */}
       <div className="pointer-events-none absolute inset-0">
@@ -140,7 +140,7 @@ export default function TransformationOverview() {
         />
       </div>
 
-      <div className="relative mx-auto grid w-full max-w-[var(--container-wide)] gap-12 px-[var(--page-gutter)] lg:grid-cols-[0.82fr_1.18fr] lg:items-center lg:gap-16">
+      <div className="relative mx-auto grid w-full max-w-[var(--container-wide)] gap-8 px-[var(--page-gutter)] lg:grid-cols-[0.82fr_1.18fr] lg:items-center lg:gap-12">
         {/* LEFT CONTENT */}
         <div
           ref={contentRef}
@@ -232,12 +232,12 @@ export default function TransformationOverview() {
 
         {/* RIGHT VISUAL */}
         <div
-          className="relative z-10 flex min-h-[680px] items-center justify-center lg:min-h-[720px]"
+          className="relative z-10 flex min-h-[560px] items-center justify-center lg:min-h-[600px]"
           onMouseLeave={() => setActiveIndex(0)}
         >
           <div
             ref={stackRef}
-            className="relative h-[640px] w-full max-w-[690px]"
+            className="relative h-[540px] w-full max-w-[690px]"
           >
             {/* WHITE PLACEHOLDER */}
             <div className="absolute left-[60%] top-[58%] h-[470px] w-[66%] max-w-[430px] -translate-x-1/2 -translate-y-1/2 rounded-[2.5rem] border border-black/[0.07] bg-white/80 shadow-[0_28px_75px_rgba(0,0,0,0.055)] backdrop-blur-xl" />
@@ -251,7 +251,7 @@ export default function TransformationOverview() {
             </div>
 
             {/* CARD STACK */}
-            <div className="absolute left-[88%] top-[79%] h-[520px] w-[80%] max-w-[520px] -translate-x-1/2 -translate-y-1/2">
+            <div className="absolute left-[88%] top-[79%] h-[440px] w-[80%] max-w-[520px] -translate-x-1/2 -translate-y-1/2">
               {cards.map((card, index) => {
                 const isActive = activeIndex === index;
 

@@ -1,9 +1,9 @@
-import CareerDetailPage from "@/components/careers/CareerDetailPage";
+import YoungProfessionalsExperience from "@/components/careers/YoungProfessionalsExperience";
 
 export default function YoungProfessionalsPage() {
   return (
     <main className="overflow-x-hidden">
-      <CareerDetailPage type="young-professionals" />
+      <YoungProfessionalsExperience />
     </main>
   );
 }

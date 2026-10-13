@@ -318,12 +318,12 @@ export default function CareerDetailPage({
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden bg-[#f1f2ed] pb-[clamp(4rem,7vw,7rem)] pt-[7.7rem] text-black md:pt-[8.3rem]"
+      className="relative overflow-hidden bg-[#f1f2ed] pb-[clamp(2.75rem,4.5vw,4.5rem)] pt-[7.25rem] text-black md:pt-[7.75rem]"
     >
       <div className="mx-auto w-full max-w-[var(--container-wide)] px-[var(--page-gutter)]">
         {/* HERO */}
         <div
-          className={`relative flex min-h-[385px] items-center overflow-hidden rounded-[2.2rem] px-5 py-12 md:min-h-[420px] md:px-10 lg:px-14 ${theme.shell}`}
+          className={`relative flex min-h-[350px] items-center overflow-hidden rounded-[2.2rem] px-5 py-9 md:min-h-[380px] md:px-10 lg:px-14 ${theme.shell}`}
         >
           <div
             className={`pointer-events-none absolute inset-0 ${theme.background}`}
@@ -517,7 +517,7 @@ export default function CareerDetailPage({
 
         <div
           data-detail-content
-          className="mt-[clamp(4rem,7vw,7rem)]"
+          className="mt-[clamp(2.75rem,4.5vw,4.5rem)]"
         >
           {type === "work-with-us" && (
             <WorkWithUsContent />
@@ -759,7 +759,7 @@ function RecruitmentCTA() {
   return (
     <div
       data-detail-reveal
-      className="relative mt-[clamp(4rem,7vw,6rem)] overflow-hidden rounded-[2rem] border border-[var(--z-green)]/18 bg-[linear-gradient(110deg,rgba(49,155,66,0.10),rgba(255,255,255,0.62),rgba(234,203,84,0.10))] p-7 shadow-[0_25px_70px_rgba(35,70,40,0.06)] backdrop-blur-[28px] md:p-9"
+      className="relative mt-[clamp(2.75rem,4.5vw,4.25rem)] overflow-hidden rounded-[2rem] border border-[var(--z-green)]/18 bg-[linear-gradient(110deg,rgba(49,155,66,0.10),rgba(255,255,255,0.62),rgba(234,203,84,0.10))] p-7 shadow-[0_25px_70px_rgba(35,70,40,0.06)] backdrop-blur-[28px] md:p-9"
     >
       <div className="grid gap-7 lg:grid-cols-[1fr_auto] lg:items-center">
         <div>
