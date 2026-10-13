@@ -185,7 +185,7 @@ export default function SocialImpactExperience() {
                   </div>
 
                   <div className="flex flex-1 flex-col px-3 pb-3 pt-5">
-                    <h3 className="text-center text-[1.25rem] font-semibold leading-tight tracking-[-0.03em] text-[#172019]">
+                    <h3 className="text-center text-[1.25rem] font-medium leading-tight tracking-[-0.03em] text-[#172019]">
                       {item.title}
                     </h3>
                     <p className="mt-3 w-full text-left text-[0.92rem] leading-[1.65] text-black/50">

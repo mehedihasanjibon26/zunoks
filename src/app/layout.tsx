@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/navigation/Navbar";
@@ -7,6 +8,12 @@ import PreloaderController from "@/components/transitions/PreloaderController";
 import SmoothScroll from "@/components/transitions/SmoothScroll";
 
 import "./globals.css";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-primary",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: {
@@ -24,7 +31,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body className={inter.variable}>
         <PreloaderController>
           <SmoothScroll>
             <div className="site-shell">

@@ -129,7 +129,7 @@ export default function Hero() {
         </div>
 
         <div className="flex flex-1 items-center">
-          <h1 className="max-w-[1250px] text-[clamp(4rem,8vw,9.1rem)] font-medium leading-[0.82] tracking-[-0.075em]">
+          <h1 className="max-w-[1250px] text-[clamp(4rem,8vw,9.1rem)] font-normal leading-[0.82] tracking-[-0.075em]">
             <span className="block overflow-hidden pb-[0.1em]">
               <span data-hero-word className="block text-white">
                 {hero.line1}

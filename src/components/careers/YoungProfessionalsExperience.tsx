@@ -305,7 +305,7 @@ export default function YoungProfessionalsExperience() {
                   <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--z-green)]/[0.08] text-[var(--z-green)] transition-colors duration-400 group-hover:bg-[var(--z-green)] group-hover:text-white">
                     <Icon size={17} strokeWidth={1.5} aria-hidden="true" />
                   </span>
-                  <h3 className="mt-6 text-sm font-semibold text-[#172219]">{area.title}</h3>
+                  <h3 className="mt-6 text-sm font-medium text-[#172219]">{area.title}</h3>
                   <p className="mt-2 text-xs leading-5 text-black/44">{area.description}</p>
                 </article>
               );
@@ -334,7 +334,7 @@ export default function YoungProfessionalsExperience() {
                     <Icon size={17} strokeWidth={1.5} aria-hidden="true" />
                   </div>
                   <span className="mt-3 block font-mono text-[0.54rem] text-[var(--z-green)]/55">{step.number}</span>
-                  <h3 className="mt-1 text-sm font-semibold text-[#172219]">{step.title}</h3>
+                  <h3 className="mt-1 text-sm font-medium text-[#172219]">{step.title}</h3>
                   <p className="mx-auto mt-2 max-w-[12rem] text-xs leading-5 text-black/42">{step.description}</p>
                   {index < journeySteps.length - 1 && (
                     <ArrowRight
